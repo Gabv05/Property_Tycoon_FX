@@ -10,7 +10,11 @@ import java.util.LinkedList;
 
 public class TileReader {
 
-    private int noOfTiles = 40; //total number of tiles on the board
+    public int getNoOfTiles() {
+        return noOfTiles;
+    }
+
+    public int noOfTiles = 40; //total number of tiles on the board
     private double position; //position on the board
     private String space; //name of the tile
     private String group; //group of the tile
@@ -136,7 +140,7 @@ public class TileReader {
         }
     }
 
-    public LinkedList returnTileList() {
+    public LinkedList<Tile> returnTileList() {
         return tileList;
     }
 }
