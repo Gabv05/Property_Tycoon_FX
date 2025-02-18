@@ -40,10 +40,8 @@ public class GameBoard extends Application {
         double sceneWidth = 1920;
         double sceneHeight = 1080;
 
-
-
         // Create pane for board:
-        StackPane boardPane = new StackPane();
+        BorderPane boardPane = new BorderPane();
         boardPane.setStyle("-fx-background-color: beige;");
         boardPane.setLayoutX(sceneWidth * 0.025); // Start 5% from the left
         boardPane.setLayoutY(sceneHeight * 0.05); // Slight top margin
@@ -51,8 +49,40 @@ public class GameBoard extends Application {
         boardPane.setPrefHeight(sceneHeight * 0.9);
         boardPane.setBorder(Border);
 
+        GridPane BottomPane = new GridPane();
+        BottomPane.setStyle("-fx-background-color: beige;");
+        BottomPane.setPrefWidth(boardPane.getPrefWidth()); // Full width for BottomPane
+        BottomPane.setPrefHeight(boardPane.getPrefHeight() * 0.175); // Height for BottomPane
+        BottomPane.setBorder(Border);
 
-        // Create pane for Bank:
+        GridPane TopPane = new GridPane();
+        TopPane.setStyle("-fx-background-color: beige;");
+        TopPane.setPrefWidth(boardPane.getPrefWidth()); // Full width for TopPane
+        TopPane.setPrefHeight(boardPane.getPrefHeight() * 0.175); // Height for TopPane
+        TopPane.setBorder(Border);
+
+
+        GridPane LeftPane = new GridPane();
+        LeftPane.setStyle("-fx-background-color: beige;");
+        LeftPane.setPrefWidth(boardPane.getPrefWidth() * 0.15); // Width for LeftPane
+        LeftPane.setPrefHeight(boardPane.getPrefHeight()); // Full height for LeftPane
+        LeftPane.setBorder(Border);
+
+
+        GridPane RightPane = new GridPane();
+        RightPane.setStyle("-fx-background-color: beige;");
+        RightPane.setPrefWidth(boardPane.getPrefWidth() * 0.15); // Width for RightPane
+        RightPane.setPrefHeight(boardPane.getPrefHeight()); // Full height for RightPane
+        RightPane.setBorder(Border);
+
+
+        // Set side panes to be inside the boardPane using BorderPane
+        boardPane.setBottom(BottomPane);
+        boardPane.setTop(TopPane);
+        boardPane.setLeft(LeftPane);
+        boardPane.setRight(RightPane);
+
+        // Create pane for Bank (inside the boardPane):
         Pane bankPane = new Pane();
         bankPane.setStyle("-fx-background-color: beige;");
         bankPane.setLayoutX(sceneWidth * 0.75);
@@ -61,7 +91,7 @@ public class GameBoard extends Application {
         bankPane.setPrefHeight(sceneHeight * 0.45);
         bankPane.setBorder(Border);
 
-        // Create pane for Bank:
+        // Create pane for Dice (inside the boardPane):
         Pane DicePane = new Pane();
         DicePane.setStyle("-fx-background-color: beige;");
         DicePane.setLayoutX(sceneWidth * 0.75);
@@ -70,35 +100,54 @@ public class GameBoard extends Application {
         DicePane.setPrefHeight(sceneHeight * 0.45);
         DicePane.setBorder(Border);
 
-        // Image DiceImage = new Image("");
-
+        // Create the main group to hold everything
         Group mainGroup = new Group();
         mainGroup.getChildren().addAll(boardPane, bankPane, DicePane);
 
+        // Call FillTiles method to populate the board
         FillTiles(boardPane);
 
+        // Create the scene and set it to the primary stage
         Scene gameScene = new Scene(mainGroup, sceneWidth, sceneHeight);
         primaryStage.setScene(gameScene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
+
     public void FillTiles(Pane BoardPane) {
-        // Get Pane Types
+        // Initialize the TileReader and load tile details
+        TileReader TReader = new TileReader();
+        TReader.getTileDetails(); // Load the tile details from the Excel sheet
+
+        // Set max number of tiles per row
+        int maxPerRow = TReader.getNoOfTiles() / 4;
+
+        // get available pane types
         List<Pane> paneTypes = GetPaneTypes();
         Pane CornerPane = paneTypes.get(0);
         Pane RectPane = paneTypes.get(1);
 
-        TileReader TReader = new TileReader();
-        TReader.getTileDetails(); // Load the tile details from the Excel sheet
-
+        //get the list of tiles
         LinkedList<Tile> tileList = TReader.returnTileList(); // Get the list of tiles from TileReader
 
-        for (Tile tile : tileList) {
-            System.out.println("Placed tile: " + tile.getSpace() + " at position " + tile.getPosition());
+        // Loop through each tile and assign it a position based on its characteristics
+        for (int i = 0; i < tileList.size(); i++) {
+            Tile tile = tileList.get(i);
+            String PositionStr  = Double.toString(tile.getPosition());
+
+            //check if the tile ends in 1 or is just 1, and assign to CornerPane; else assign to RectPane
+            if (PositionStr.endsWith("1.0") || tile.getPosition() == 1) {
+                // Place tile in CornerPane
+
+                System.out.println("Placed corner tile: " + tile.getSpace() + " at position " + tile.getPosition());
+            } else {
+                // Place tile in RectPane
+
+                System.out.println("Placed rectangle tile: " + tile.getSpace() + " at position " + tile.getPosition());
+            }
         }
     }
-
 
     public List<Pane> GetPaneTypes() {
         Pane CornerPane = new Pane();
@@ -121,7 +170,7 @@ public class GameBoard extends Application {
 
     // Create Universal Border:
    public Border Border = new Border(new BorderStroke(Color.BLACK, // Border color
-            BorderStrokeStyle.SOLID, // Solid line style
+            BorderStrokeStyle.DASHED, // Solid line style
             CornerRadii.EMPTY, // No rounded corners
             new BorderWidths(2) // 2-pixel border width
     ));
