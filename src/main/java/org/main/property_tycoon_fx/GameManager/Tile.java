@@ -1,3 +1,5 @@
+package org.main.property_tycoon_fx.GameManager;
+
 public class Tile {
     private double position; //position on the board
     private String space; //name of the tile

@@ -6,11 +6,30 @@
   <component name="ChangeListManager">
     <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/TileReaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test/TileReaderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Bank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PlayerAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/PlayerAI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/TileReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/property_tycoon_fx/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/main/property_tycoon_fx/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,12 +74,13 @@
       <recent name="$PROJECT_DIR$/data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/org/main" />
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="GameManager" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="GameManager" />
+      <option name="MAIN_CLASS_NAME" value="org.main.property_tycoon_fx.GameManager.GameManager" />
       <module name="Property_Tycoon_FX" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -77,10 +97,22 @@
       <updated>1739894932087</updated>
       <workItem from="1739894933453" duration="1879000" />
       <workItem from="1739896850656" duration="113000" />
+      <workItem from="1739897218785" duration="254000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/TileReader.java</url>
+          <line>131</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

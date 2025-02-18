@@ -5,5 +5,6 @@ module org.example.property_tycoon_fx {
     requires org.controlsfx.controls;
     requires org.apache.poi.ooxml;
 
-    opens org.example.property_tycoon_fx to javafx.fxml;
+    opens org.main.property_tycoon_fx to javafx.fxml;
+    exports org.main.property_tycoon_fx.GameManager;
 }

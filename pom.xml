@@ -99,7 +99,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.example.property_tycoon_fx/org.example.property_tycoon_fx.HelloApplication
+                            <mainClass>org.main.property_tycoon_fx/org.main.property_tycoon_fx.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

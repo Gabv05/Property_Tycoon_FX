@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import org.main.property_tycoon_fx.GameManager.Tile;
+import org.main.property_tycoon_fx.GameManager.TileReader;
 
 import java.util.LinkedList;
 
