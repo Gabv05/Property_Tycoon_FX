@@ -55,8 +55,8 @@ public class GameBoard extends Application {
         double paneWidth = boardPane.getPrefWidth() * 0.190;  // Same width for Top and Bottom panes
         double paneHeight = boardPane.getPrefHeight() * 0.190; // Same height for all panes
 
-        double sidePaneWidth = boardPane.getPrefWidth() * 0.150; // Keep the side panes narrower
-        double sidePaneHeight = boardPane.getPrefHeight() * (1 - 2 * 0.175); // Adjust height so they don't overlap
+        double sidePaneWidth = boardPane.getPrefWidth() * 0.160; // Keep the side panes narrower
+        double sidePaneHeight = boardPane.getPrefHeight() * (1 - 2 * 0.175);
 
         GridPane BottomPane = new GridPane();
         BottomPane.setStyle("-fx-background-color: beige;");
@@ -65,13 +65,11 @@ public class GameBoard extends Application {
         BottomPane.setBorder(Border);
 
 
-
         GridPane TopPane = new GridPane();
         TopPane.setStyle("-fx-background-color: beige;");
         TopPane.setPrefWidth(paneWidth);
         TopPane.setPrefHeight(paneHeight);
         TopPane.setBorder(Border);
-
 
 
         GridPane LeftPane = new GridPane();
@@ -86,7 +84,6 @@ public class GameBoard extends Application {
         RightPane.setPrefWidth(sidePaneWidth);
         RightPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
         RightPane.setBorder(Border);
-
 
 
         // Set side panes to be inside the boardPane using BorderPane
@@ -120,31 +117,13 @@ public class GameBoard extends Application {
 
         // Call FillTiles method to populate the board
 
-        FillTiles(TopPane,BottomPane,LeftPane,RightPane);
+        FillTiles(TopPane, BottomPane, LeftPane, RightPane);
 
         // Create the scene and set it to the primary stage
         Scene gameScene = new Scene(mainGroup, sceneWidth, sceneHeight);
         primaryStage.setScene(gameScene);
         primaryStage.setFullScreen(true);
         primaryStage.show();
-    }
-
-    public List<Pane> GetPaneTypes() {
-        Pane CornerPane = new Pane();
-        CornerPane.setScaleX(.25);
-        CornerPane.setScaleY(.25);
-        CornerPane.setBorder(Border);
-
-        Pane RectPane = new Pane();
-        RectPane.setScaleX(.175);
-        RectPane.setScaleY(.25);
-        RectPane.setBorder(Border);
-
-        List<Pane> panes = new ArrayList<>();
-        panes.add(CornerPane);
-        panes.add(RectPane);
-
-        return panes;
     }
 
 
@@ -179,34 +158,46 @@ public class GameBoard extends Application {
 
             System.out.println("Placed " + tile.getType() + " " + tile.getSpace() + " at position " + tile.getPosition());
 
-            Label cell = new Label(tile.getSpace()); // Create a label for the tile
-            cell.setMinSize(50, 50); // Adjust size as needed
-            cell.setAlignment(Pos.CENTER);
-            cell.setFont(new Font(14));
-            cell.setBorder(new Border(new BorderStroke(Color.BLACK,
+            Label cellRect = new Label(tile.getSpace()); // Create a label for the tile
+            cellRect.setMinSize(50, 75); // Adjust size as needed
+            cellRect.setAlignment(Pos.CENTER);
+            cellRect.setFont(new Font(14));
+            cellRect.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
-            cell.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
+            cellRect.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
+
+            Label cellCorner = new Label(tile.getSpace()); // Create a label for the tile
+            cellCorner.setMinSize(150, 150); // Adjust size as needed
+            cellCorner.setAlignment(Pos.CENTER);
+            cellCorner.setFont(new Font(14));
+            cellCorner.setBorder(new Border(new BorderStroke(Color.BLACK,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            cellRect.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
+
 
             if (bottomCol < topSize) {
-                Bottom.add(cell, bottomCol, 0); // Fill BottomPane left to right
+                if (tile.getType().equals("Corner")) {
+                    Bottom.add(cellCorner, bottomCol, 0); // Fill BottomPane left to right
+                } else {
+                    Bottom.add(cellRect, bottomCol, 0); // Fill BottomPane left to right
+                }
                 bottomCol++;
             } else if (rightRow >= 0) {
-                Right.add(cell, 0, rightRow); // Fill RightPane bottom to top
+                Right.add(cellRect, 0, rightRow); // Fill RightPane bottom to top
                 rightRow--;
             } else if (topCol >= 0) {
-                Top.add(cell, topCol, 0); // Fill TopPane right to left
+                if (tile.getType().equals("Corner")) {
+                    Top.add(cellCorner, topCol, 0); // Fill TopPane right to left
+                } else {
+                    Top.add(cellRect, topCol, 0); // Fill TopPane right to left
+                }
                 topCol--;
             } else if (leftRow < sideSize) {
-                Left.add(cell, 0, leftRow); // Fill LeftPane top to bottom
+                Left.add(cellRect, 0, leftRow); // Fill LeftPane top to bottom
                 leftRow++;
             }
         }
     }
-
-
-
-
-
 
 
 }
