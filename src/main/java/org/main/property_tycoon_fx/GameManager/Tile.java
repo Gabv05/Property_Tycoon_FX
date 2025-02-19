@@ -6,11 +6,12 @@ public class Tile {
     private String group;
     private String action; //action that the tile may trigger
     private boolean canBeBought; //shows if tile can be bought by the player
+    private String Type;
     private double cost; //shows cost of tile if it can be bought by player
     private double[] rent; //shows cost of rent if player has property on the tile and someone steps on it
     private int isOwnedBy; //ID number of player that owns tile (default 0)
 
-    public Tile(double Tposition, String Tspace,String Tgroup, String Taction, boolean TcanBeBought, double Tcost, double[] Trent, int TisOwnedBy) {
+    public Tile(double Tposition, String Tspace, String Tgroup, String Taction, boolean TcanBeBought, double Tcost, double[] Trent, int TisOwnedBy, String TType) {
         position = Tposition;
         space = Tspace;
         group = Tgroup;
@@ -19,15 +20,21 @@ public class Tile {
         cost = Tcost;
         rent = Trent;
         isOwnedBy = TisOwnedBy;
+        Type = TType;
     }
 
     public double getPosition() {
         return position;
     }
 
+    public String isType() {
+        return Type;
+    }
+
     public String getSpace() {
         return space;
     }
+
     public String getGroup() {
         return group;
     }

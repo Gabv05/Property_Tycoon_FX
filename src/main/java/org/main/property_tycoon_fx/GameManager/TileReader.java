@@ -123,7 +123,7 @@ public class TileReader {
                                 break;
                         }
                     }
-                    Tile tile = new Tile(position, space, group, action, canBeBought, cost, rent.clone(), 0); //rent.clone needed so all tiles don't get the same copy of the rent array
+                    Tile tile = new Tile(position, space, group, action, canBeBought, cost, rent.clone(), 0,"GabFixThisSoThatItCanBe Corner or Normal"); //rent.clone needed so all tiles don't get the same copy of the rent array
                     tileList.add(tile);
                     action = null; //need to reset action as not all tiles have one
                     cost = -1; //need to reset cost so it doesn't carry over to tiles that don't have one
