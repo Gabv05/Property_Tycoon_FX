@@ -11,7 +11,7 @@ public class Tile {
     private double[] rent; //shows cost of rent if player has property on the tile and someone steps on it
     private int isOwnedBy; //ID number of player that owns tile (default 0)
 
-    public Tile(double Tposition, String Tspace, String Tgroup, String Taction, boolean TcanBeBought, double Tcost, double[] Trent, int TisOwnedBy, String TType) {
+    public Tile(double Tposition, String Tspace, String Tgroup, String Taction, boolean TcanBeBought, double Tcost, double[] Trent, int TisOwnedBy) {
         position = Tposition;
         space = Tspace;
         group = Tgroup;
@@ -20,15 +20,18 @@ public class Tile {
         cost = Tcost;
         rent = Trent;
         isOwnedBy = TisOwnedBy;
-        Type = TType;
     }
 
     public double getPosition() {
         return position;
     }
 
-    public String isType() {
+    public String getType() {
         return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 
     public String getSpace() {
