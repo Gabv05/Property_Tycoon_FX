@@ -159,27 +159,42 @@ public class GameBoard extends Application {
             System.out.println("Placed " + tile.getType() + " " + tile.getSpace() + " at position " + tile.getPosition());
 
             Label cellRect = new Label(tile.getSpace()); // Create a label for the tile
-            cellRect.setMinSize(50, 75); // Adjust size as needed
+            cellRect.setMinSize(150, 75);
+            cellRect.setMaxSize(150, 75);
+            cellRect.setPrefSize(150, 75);
             cellRect.setAlignment(Pos.CENTER);
             cellRect.setFont(new Font(14));
             cellRect.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
             cellRect.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
 
+            Label cellRect1 = new Label(tile.getSpace()); // Create a label for the tile
+            cellRect1.setMinSize(75, 150);
+            cellRect1.setMaxSize(75, 150);
+            cellRect1.setPrefSize(75, 150);
+            cellRect1.setAlignment(Pos.CENTER);
+            cellRect1.setFont(new Font(14));
+            cellRect1.setBorder(new Border(new BorderStroke(Color.BLACK,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            cellRect1.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
+
             Label cellCorner = new Label(tile.getSpace()); // Create a label for the tile
-            cellCorner.setMinSize(150, 150); // Adjust size as needed
+            cellCorner.setMinSize(150, 150);
+            cellCorner.setMaxSize(150, 150);
+            cellCorner.setPrefSize(150, 150);
             cellCorner.setAlignment(Pos.CENTER);
             cellCorner.setFont(new Font(14));
             cellCorner.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
-            cellRect.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
+            cellCorner.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
+
 
 
             if (bottomCol < topSize) {
                 if (tile.getType().equals("Corner")) {
                     Bottom.add(cellCorner, bottomCol, 0); // Fill BottomPane left to right
                 } else {
-                    Bottom.add(cellRect, bottomCol, 0); // Fill BottomPane left to right
+                    Bottom.add(cellRect1, bottomCol, 0); // Fill BottomPane left to right
                 }
                 bottomCol++;
             } else if (rightRow >= 0) {
@@ -189,7 +204,7 @@ public class GameBoard extends Application {
                 if (tile.getType().equals("Corner")) {
                     Top.add(cellCorner, topCol, 0); // Fill TopPane right to left
                 } else {
-                    Top.add(cellRect, topCol, 0); // Fill TopPane right to left
+                    Top.add(cellRect1, topCol, 0); // Fill TopPane right to left
                 }
                 topCol--;
             } else if (leftRow < sideSize) {

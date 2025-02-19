@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="Changed PlaceHolders into TileNames Based On Position">
+    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="Made Corner Tiles Work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
     </list>
@@ -152,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739981520715</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Made Corner Tiles Work">
+      <option name="closed" value="true" />
+      <created>1739983630385</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739983630385</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +181,7 @@
     <MESSAGE value="Made Basic Display layout" />
     <MESSAGE value="Added gridpanes so we can scale it" />
     <MESSAGE value="Changed PlaceHolders into TileNames Based On Position" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed PlaceHolders into TileNames Based On Position" />
+    <MESSAGE value="Made Corner Tiles Work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made Corner Tiles Work" />
   </component>
 </project>
