@@ -5,6 +5,6 @@ public class GameManager {
        TileReader tileReader = new TileReader();
        tileReader.getTileDetails();
 
-        System.out.println(tileReader.returnTileList());
+
     }
 }

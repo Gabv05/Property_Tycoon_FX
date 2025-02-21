@@ -156,9 +156,9 @@ public class GameBoard extends Application {
             boolean isCorner = PositionStr.endsWith("1.0") || tile.getPosition() == 1;
             tile.setType(isCorner ? "Corner" : "Rectangle");
 
-            System.out.println("Placed " + tile.getType() + " " + tile.getSpace() + " at position " + tile.getPosition());
+            System.out.println("Placed " + tile.getType() + " " + tile.getSpace() + " at position " + tile.getPosition() + "is Group: " + tile.getGroup());
 
-            Label cellRect = new Label(tile.getSpace()); // Create a label for the tile
+            Label cellRect = new Label(tile.getSpace()); // Create a label for the tile normal rotation
             cellRect.setMinSize(150, 75);
             cellRect.setMaxSize(150, 75);
             cellRect.setPrefSize(150, 75);
@@ -168,7 +168,7 @@ public class GameBoard extends Application {
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
             cellRect.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
 
-            Label cellRect1 = new Label(tile.getSpace()); // Create a label for the tile
+            Label cellRect1 = new Label(tile.getSpace()); // Create a label for the tile flipped 180 degrees
             cellRect1.setMinSize(75, 150);
             cellRect1.setMaxSize(75, 150);
             cellRect1.setPrefSize(75, 150);
