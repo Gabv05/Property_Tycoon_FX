@@ -187,7 +187,7 @@ public class GameBoard extends Application {
             cellRectRight.setFitHeight(150);
             cellRectRight.setRotate(270);
 
-
+//lauren was here
             Label cellCorner = new Label(tile.getSpace()); // Create a label for the tile
             cellCorner.setMinSize(150, 150);
             cellCorner.setMaxSize(150, 150);
