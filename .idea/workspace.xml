@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="Added 75% of images to each tile based on group">
+    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment=" works but a little fucked">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
     </list>
@@ -186,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740149228074</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary=" works but a little fucked">
+      <option name="closed" value="true" />
+      <created>1740151060344</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1740151060344</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +218,7 @@
     <MESSAGE value="Made Corner Tiles Work" />
     <MESSAGE value="made everythign ework" />
     <MESSAGE value="Added 75% of images to each tile based on group" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 75% of images to each tile based on group" />
+    <MESSAGE value=" works but a little fucked" />
+    <option name="LAST_COMMIT_MESSAGE" value=" works but a little fucked" />
   </component>
 </project>

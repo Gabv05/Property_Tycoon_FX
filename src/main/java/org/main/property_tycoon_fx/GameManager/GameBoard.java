@@ -208,7 +208,7 @@ public class GameBoard extends Application {
                 }
                 bottomCol++;
             } else if (rightRow >= 0) {
-                Right.add(cellRectRight, 0, rightRow); // Fill RightPane bottom to top
+                Right.add(cellRectRight, 0, rightRow); // Fill RisghtPane bottom to top
                 rightRow--;
             } else if (topCol >= 0) {
                 if (tile.getType().equals("Corner")) {
