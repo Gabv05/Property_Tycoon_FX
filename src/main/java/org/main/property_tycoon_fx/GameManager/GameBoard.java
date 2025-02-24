@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -59,52 +58,42 @@ public class GameBoard extends Application {
         double sidePaneWidth = boardPane.getPrefWidth() * 0.160; // Keep the side panes narrower
         double sidePaneHeight = boardPane.getPrefHeight() * (1 - 2 * 0.175);
 
-        // Create the Bottom pane with fixed size
         GridPane BottomPane = new GridPane();
         BottomPane.setStyle("-fx-background-color: beige;");
         BottomPane.setPrefWidth(paneWidth);
         BottomPane.setPrefHeight(paneHeight);
-        BottomPane.setMaxWidth(paneWidth); // Ensuring the width doesn't exceed
-        BottomPane.setMaxHeight(paneHeight); // Ensuring the height doesn't exceed
         BottomPane.setBorder(Border);
-        BottomPane.setHgap(0);
-        BottomPane.setVgap(0);
+
 
         GridPane TopPane = new GridPane();
         TopPane.setStyle("-fx-background-color: beige;");
         TopPane.setPrefWidth(paneWidth);
         TopPane.setPrefHeight(paneHeight);
-        TopPane.setMaxWidth(paneWidth);
-        TopPane.setMaxHeight(paneHeight);
         TopPane.setBorder(Border);
-        TopPane.setHgap(0);
-        TopPane.setVgap(0);
+
 
         GridPane LeftPane = new GridPane();
         LeftPane.setStyle("-fx-background-color: beige;");
         LeftPane.setPrefWidth(sidePaneWidth);
-        LeftPane.setPrefHeight(sidePaneHeight);
-        LeftPane.setMaxWidth(sidePaneWidth); // Fixed width for Left Pane
-        LeftPane.setMaxHeight(sidePaneHeight); // Fixed height for Left Pane
+        LeftPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
         LeftPane.setBorder(Border);
-        LeftPane.setHgap(0);
-        LeftPane.setVgap(0);
+
 
         GridPane RightPane = new GridPane();
         RightPane.setStyle("-fx-background-color: beige;");
         RightPane.setPrefWidth(sidePaneWidth);
-        RightPane.setPrefHeight(sidePaneHeight);
-        RightPane.setMaxWidth(sidePaneWidth); // Fixed width for Right Pane
-        RightPane.setMaxHeight(sidePaneHeight); // Fixed height for Right Pane
+        RightPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
         RightPane.setBorder(Border);
-        RightPane.setHgap(0);
-        RightPane.setVgap(0);
 
+
+        // Set side panes to be inside the boardPane using BorderPane
         boardPane.setBottom(BottomPane);
         boardPane.setTop(TopPane);
         boardPane.setLeft(LeftPane);
         boardPane.setRight(RightPane);
 
+
+        // Create pane for Bank (inside the boardPane):
         Pane bankPane = new Pane();
         bankPane.setStyle("-fx-background-color: beige;");
         bankPane.setLayoutX(sceneWidth * 0.75);
@@ -113,6 +102,7 @@ public class GameBoard extends Application {
         bankPane.setPrefHeight(sceneHeight * 0.45);
         bankPane.setBorder(Border);
 
+        // Create pane for Dice (inside the boardPane):
         Pane DicePane = new Pane();
         DicePane.setStyle("-fx-background-color: beige;");
         DicePane.setLayoutX(sceneWidth * 0.75);
@@ -168,26 +158,26 @@ public class GameBoard extends Application {
 
             System.out.println("Placed " + tile.getType() + " " + tile.getSpace() + " at position " + tile.getPosition() + "is Group: " + tile.getGroup());
 
-            ImageView cellRectTop = new ImageView(tile.getTileImage()); // Create a label for the tile flipped 180 degrees
-            cellRectTop.setFitWidth(75);
-            cellRectTop.setFitHeight(150);
-            cellRectTop.setRotate(180);
+            Label cellRect = new Label(tile.getSpace()); // Create a label for the tile normal rotation
+            cellRect.setMinSize(150, 75);
+            cellRect.setMaxSize(150, 75);
+            cellRect.setPrefSize(150, 75);
+            cellRect.setAlignment(Pos.CENTER);
+            cellRect.setFont(new Font(14));
+            cellRect.setBorder(new Border(new BorderStroke(Color.BLACK,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
 
-            ImageView cellRectBottom = new ImageView(tile.getTileImage()); // Create a label for the tile flipped 180 degrees
-            cellRectBottom.setFitWidth(75);
-            cellRectBottom.setFitHeight(150);
 
-            ImageView cellRectLeft = new ImageView(tile.getTileImage()); // Create a label for the tile flipped 180 degrees
-            cellRectLeft.setFitWidth(75);
-            cellRectLeft.setFitHeight(150);
-            cellRectLeft.setRotate(90);
+            Label cellRect1 = new Label(tile.getSpace()); // Create a label for the tile flipped 180 degrees
+            cellRect1.setMinSize(75, 150);
+            cellRect1.setMaxSize(75, 150);
+            cellRect1.setPrefSize(75, 150);
+            cellRect1.setAlignment(Pos.CENTER);
+            cellRect1.setFont(new Font(14));
+            cellRect1.setBorder(new Border(new BorderStroke(Color.BLACK,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
 
-            ImageView cellRectRight = new ImageView(tile.getTileImage()); // Create a label for the tile flipped 180 degrees
-            cellRectRight.setFitWidth(75);
-            cellRectRight.setFitHeight(150);
-            cellRectRight.setRotate(270);
 
-//lauren was here
             Label cellCorner = new Label(tile.getSpace()); // Create a label for the tile
             cellCorner.setMinSize(150, 150);
             cellCorner.setMaxSize(150, 150);
@@ -196,29 +186,60 @@ public class GameBoard extends Application {
             cellCorner.setFont(new Font(14));
             cellCorner.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
-            cellCorner.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
+
+
+
+
+            Image imageTileRect = new Image(tile.getTileImage().getUrl(), 75, 150, false, false);
+            Image imageTileCorner = new Image(tile.getTileImage().getUrl(), 150, 150, false, false);
+
+
+
+            BackgroundImage WeSoStupidlol = new BackgroundImage(
+                    imageTileRect,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT
+            );
+
+            BackgroundImage WeSoStupidlol1 = new BackgroundImage(
+                    imageTileCorner,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT
+            );
+
+
 
 
 
             if (bottomCol < topSize) {
                 if (tile.getType().equals("Corner")) {
+                    cellCorner.setBackground(new Background(WeSoStupidlol1));
                     Bottom.add(cellCorner, bottomCol, 0); // Fill BottomPane left to right
                 } else {
-                    Bottom.add(cellRectBottom, bottomCol, 0); // Fill BottomPane left to right
+                    cellRect1.setBackground(new Background(WeSoStupidlol));
+                    Bottom.add(cellRect1, bottomCol, 0); // Fill BottomPane left to right
                 }
                 bottomCol++;
             } else if (rightRow >= 0) {
-                Right.add(cellRectRight, 0, rightRow); // Fill RisghtPane bottom to top
+                cellRect.setBackground(new Background(WeSoStupidlol));
+                Right.add(cellRect, 0, rightRow); // Fill RightPane bottom to top
                 rightRow--;
             } else if (topCol >= 0) {
                 if (tile.getType().equals("Corner")) {
+                    cellCorner.setBackground(new Background(WeSoStupidlol1));
                     Top.add(cellCorner, topCol, 0); // Fill TopPane right to left
                 } else {
-                    Top.add(cellRectTop, topCol, 0); // Fill TopPane right to left
+                    cellRect1.setBackground(new Background(WeSoStupidlol));
+                    Top.add(cellRect1, topCol, 0); // Fill TopPane right to left
                 }
                 topCol--;
             } else if (leftRow < sideSize) {
-                Left.add(cellRectLeft, 0, leftRow); // Fill LeftPane top to bottom
+                cellRect.setBackground(new Background(WeSoStupidlol));
+                Left.add(cellRect, 0, leftRow); // Fill LeftPane top to bottom
                 leftRow++;
             }
         }

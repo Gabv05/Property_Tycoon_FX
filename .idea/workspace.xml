@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment=" works but a little fucked">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/0DDCBB00" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/PropertyTycoonBoardData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/PropertyTycoonBoardData.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/free_parking.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/FreeParking.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/go_to_jail.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/jail.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/opportunity_knocks.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/OppKnocks.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/pot_luck.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/PotLuck.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/tax_1_board_square.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/IncomeTax.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/tax_Square.png.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/SuperTax.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +39,12 @@
     &quot;assignee&quot;: &quot;Lewis12z&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Gabv05/Property_Tycoon_FX.git",
-    "accountId": "3059f935-6805-45d3-b3ff-7a503b7524df"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Gabv05/Property_Tycoon_FX.git&quot;,
+    &quot;accountId&quot;: &quot;3059f935-6805-45d3-b3ff-7a503b7524df&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -46,13 +56,16 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2tDmHUOZTrrvdnKdYcmpMLxhbf2" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.GameBoard.executor": "Run",
     "Application.GameManager.executor": "Run",
     "JUnit.TileReaderTest.executor": "Run",
@@ -206,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740151060344</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary=" works but a little fucked">
+      <option name="closed" value="true" />
+      <created>1740418351714</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1740418351714</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,6 +245,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Made Basic Display layout" />
     <MESSAGE value="Added gridpanes so we can scale it" />
     <MESSAGE value="Changed PlaceHolders into TileNames Based On Position" />

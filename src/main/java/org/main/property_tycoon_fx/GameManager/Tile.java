@@ -80,10 +80,13 @@ public class Tile {
         if (group == null || group.isEmpty()) {
             System.out.println("Group is null or empty, assigning default image.");
             group = "default";
+
         }
 
         // Convert group name to match file naming convention
         String formattedName = group.toLowerCase().replace(" ", "_") + ".png";
+
+        System.out.println(formattedName);
 
         try {
             // Attempt to load the image
@@ -91,7 +94,7 @@ public class Tile {
         } catch (Exception e) {
             // Handle error if image is not found
             System.err.println("Image not found for group: " + group);
-            TileImage = null;
+            TileImage = new Image(getClass().getResource("/Images/Yellow.png").toExternalForm());
         }
     }
 
