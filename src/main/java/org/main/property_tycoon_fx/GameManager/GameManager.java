@@ -28,7 +28,7 @@ public class GameManager extends Application {
         for (int i = 0; i < 1; i++) {
             player1.move();
         }
-
+// lauren was here
 
     }
 }
