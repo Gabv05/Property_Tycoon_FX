@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="Added 75% of images to each tile based on group" />
+    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment=" works but a little fucked part 2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Tile.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaFXApplication" />
         <option value="Class" />
+        <option value="JavaFXApplication" />
       </list>
     </option>
   </component>
@@ -30,7 +36,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Gabv05/Property_Tycoon_FX.git&quot;,
-    &quot;accountId&quot;: &quot;a8f59dae-e572-4d15-a28e-50e57d0ad453&quot;
+    &quot;accountId&quot;: &quot;3059f935-6805-45d3-b3ff-7a503b7524df&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -44,30 +50,37 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2tDmHUOZTrrvdnKdYcmpMLxhbf2" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.GameBoard.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GameManager.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TileReaderTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gabrielvasile/Documents/Year 2 Uni/Software Engineering/Property_Tycoon_FX&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.GameBoard.executor": "Debug",
+    "Application.GameManager.executor": "Run",
+    "JUnit.TileReaderTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/gabrielvasile/Documents/Year 2 Uni/Software Engineering/Property_Tycoon_FX",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -80,7 +93,7 @@
       <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GameBoard">
+  <component name="RunManager" selected="Application.GameManager">
     <configuration name="GameBoard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.main.property_tycoon_fx.GameManager.GameBoard" />
       <module name="Property_Tycoon_FX" />
@@ -107,6 +120,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -118,6 +139,7 @@
       <workItem from="1739894933453" duration="1879000" />
       <workItem from="1739896850656" duration="113000" />
       <workItem from="1739897218785" duration="254000" />
+      <workItem from="1740420593479" duration="126000" />
     </task>
     <task id="LOCAL-00001" summary="Made Basic Display layout">
       <option name="closed" value="true" />
@@ -175,7 +197,39 @@
       <option name="project" value="LOCAL" />
       <updated>1740148993323</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added 75% of images to each tile based on group">
+      <option name="closed" value="true" />
+      <created>1740149228074</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1740149228074</updated>
+    </task>
+    <task id="LOCAL-00009" summary=" works but a little fucked">
+      <option name="closed" value="true" />
+      <created>1740151060344</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1740151060344</updated>
+    </task>
+    <task id="LOCAL-00010" summary=" works but a little fucked">
+      <option name="closed" value="true" />
+      <created>1740418351714</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1740418351714</updated>
+    </task>
+    <task id="LOCAL-00011" summary=" works but a little fucked part 2">
+      <option name="closed" value="true" />
+      <created>1740433485239</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740433485239</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,12 +247,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Made Basic Display layout" />
     <MESSAGE value="Added gridpanes so we can scale it" />
     <MESSAGE value="Changed PlaceHolders into TileNames Based On Position" />
     <MESSAGE value="Made Corner Tiles Work" />
     <MESSAGE value="made everythign ework" />
     <MESSAGE value="Added 75% of images to each tile based on group" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 75% of images to each tile based on group" />
+    <MESSAGE value=" works but a little fucked" />
+    <MESSAGE value=" works but a little fucked part 2" />
+    <option name="LAST_COMMIT_MESSAGE" value=" works but a little fucked part 2" />
   </component>
 </project>

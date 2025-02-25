@@ -28,17 +28,6 @@ public class GameBoard extends Application {
         SetUpBoard(primaryStage);
     }
 
-    //  private void rollDiceAndMove() {
-    //    int[] roll = player.rollDice(); // Get dice values
-    //   dice1View.setImage(new Image(getClass().getResourceAsStream("/dice" + roll[0] + ".png")));
-    //  dice2View.setImage(new Image(getClass().getResourceAsStream("/dice" + roll[1] + ".png")));
-
-    // Move the player and check the tile -You can expand upon this to trigger events such as purchase, pay rent, etc. It may be better to do this outside the dice function in its own place though
-    // player.move(roll[0] + roll[1]);
-    // tileLabel.setText("Current Tile: " + player.getCurrentTile());
-    // }
-
-
     private void SetUpBoard(Stage primaryStage) {
         double sceneWidth = 1920;
         double sceneHeight = 1080;
@@ -64,13 +53,11 @@ public class GameBoard extends Application {
         BottomPane.setPrefHeight(paneHeight);
         BottomPane.setBorder(Border);
 
-
         GridPane TopPane = new GridPane();
         TopPane.setStyle("-fx-background-color: beige;");
         TopPane.setPrefWidth(paneWidth);
         TopPane.setPrefHeight(paneHeight);
         TopPane.setBorder(Border);
-
 
         GridPane LeftPane = new GridPane();
         LeftPane.setStyle("-fx-background-color: beige;");
@@ -78,20 +65,17 @@ public class GameBoard extends Application {
         LeftPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
         LeftPane.setBorder(Border);
 
-
         GridPane RightPane = new GridPane();
         RightPane.setStyle("-fx-background-color: beige;");
         RightPane.setPrefWidth(sidePaneWidth);
         RightPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
         RightPane.setBorder(Border);
 
-
         // Set side panes to be inside the boardPane using BorderPane
         boardPane.setBottom(BottomPane);
         boardPane.setTop(TopPane);
         boardPane.setLeft(LeftPane);
         boardPane.setRight(RightPane);
-
 
         // Create pane for Bank (inside the boardPane):
         Pane bankPane = new Pane();
@@ -126,14 +110,12 @@ public class GameBoard extends Application {
         primaryStage.show();
     }
 
-
     // Create Universal Border:
     public Border Border = new Border(new BorderStroke(Color.BLACK, // Border color
             BorderStrokeStyle.DASHED, // Solid line style
             CornerRadii.EMPTY, // No rounded corners
             new BorderWidths(2) // 2-pixel border width
     ));
-
 
     public void FillTiles(GridPane Top, GridPane Bottom, GridPane Left, GridPane Right) {
         TileReader TReader = new TileReader();
@@ -156,7 +138,7 @@ public class GameBoard extends Application {
             boolean isCorner = PositionStr.endsWith("1.0") || tile.getPosition() == 1;
             tile.setType(isCorner ? "Corner" : "Rectangle");
 
-            System.out.println("Placed " + tile.getType() + " " + tile.getSpace() + " at position " + tile.getPosition() + "is Group: " + tile.getGroup());
+           // System.out.println("Placed " + tile.getType() + " " + tile.getSpace() + " at position " + tile.getPosition() + "is Group: " + tile.getGroup());
 
             Label cellRect = new Label(tile.getSpace()); // Create a label for the tile normal rotation
             cellRect.setMinSize(150, 75);
@@ -166,9 +148,9 @@ public class GameBoard extends Application {
             cellRect.setFont(new Font(14));
             cellRect.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
-            cellRect.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
 
-            Label cellRect1 = new Label(tile.getSpace()); // Create a label for the tile flipped 180 degrees
+
+            Label cellRect1 = new Label(tile.getSpace());
             cellRect1.setMinSize(75, 150);
             cellRect1.setMaxSize(75, 150);
             cellRect1.setPrefSize(75, 150);
@@ -176,7 +158,6 @@ public class GameBoard extends Application {
             cellRect1.setFont(new Font(14));
             cellRect1.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
-            cellRect1.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
 
             Label cellCorner = new Label(tile.getSpace()); // Create a label for the tile
             cellCorner.setMinSize(150, 150);
@@ -186,33 +167,59 @@ public class GameBoard extends Application {
             cellCorner.setFont(new Font(14));
             cellCorner.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
-            cellCorner.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, null)));
 
+            Image imageTileRect = new Image(tile.getTileImage().getUrl(), 75, 150, false, false);
+            Image imageTileCorner = new Image(tile.getTileImage().getUrl(), 150, 150, false, false);
 
+            BackgroundImage WeSoStupidlol = new BackgroundImage(
+                    imageTileRect,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT
+            );
+
+            BackgroundImage WeSoStupidlol1 = new BackgroundImage(
+                    imageTileCorner,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT
+            );
 
             if (bottomCol < topSize) {
                 if (tile.getType().equals("Corner")) {
+                    cellCorner.setBackground(new Background(WeSoStupidlol1));
                     Bottom.add(cellCorner, bottomCol, 0); // Fill BottomPane left to right
                 } else {
+                    cellRect1.setBackground(new Background(WeSoStupidlol));
                     Bottom.add(cellRect1, bottomCol, 0); // Fill BottomPane left to right
                 }
                 bottomCol++;
             } else if (rightRow >= 0) {
+                cellRect.setBackground(new Background(WeSoStupidlol));
                 Right.add(cellRect, 0, rightRow); // Fill RightPane bottom to top
                 rightRow--;
             } else if (topCol >= 0) {
                 if (tile.getType().equals("Corner")) {
+                    cellCorner.setBackground(new Background(WeSoStupidlol1));
                     Top.add(cellCorner, topCol, 0); // Fill TopPane right to left
                 } else {
+                    cellRect1.setBackground(new Background(WeSoStupidlol));
                     Top.add(cellRect1, topCol, 0); // Fill TopPane right to left
                 }
                 topCol--;
             } else if (leftRow < sideSize) {
+                cellRect.setBackground(new Background(WeSoStupidlol));
                 Left.add(cellRect, 0, leftRow); // Fill LeftPane top to bottom
                 leftRow++;
             }
         }
     }
 
+    public void updateBoard(Stage PrimaryStage)
+    {
 
+    }
 }
+
