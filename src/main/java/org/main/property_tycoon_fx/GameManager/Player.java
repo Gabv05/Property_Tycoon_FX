@@ -9,7 +9,7 @@ public class Player {
       private int minimumPosition = 0;
       private int maxPosition = 39;
 
-      Tile CurrentTile;
+     // Tile CurrentTile;
 
     public Player(int playerID, String playerName) {
     }
@@ -20,7 +20,11 @@ public class Player {
           int diceroll2 = DiceRollRandom.nextInt(1,6);
           int diceRollValue = diceroll1 + diceroll2;
           System.out.println("Dice roll value: " + diceRollValue);
-          return(diceRollValue);
+
+          return(diceRollValue); // How much the player moves
+
+
+        // Chloe add logic blah here
      }
 
      public int move()
@@ -35,9 +39,18 @@ public class Player {
         System.out.println("Player position: " + tilePosition);
 
         return tilePosition;
+
+
+         // Chloe add logic blah here
      }
+
+
+
 
     public int getTilePosition() {
         return tilePosition;
     }
+
+
+
 }

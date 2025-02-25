@@ -106,7 +106,7 @@ public class GameBoard extends Application {
         // Create the scene and set it to the primary stage
         Scene gameScene = new Scene(mainGroup, sceneWidth, sceneHeight);
         primaryStage.setScene(gameScene);
-        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(false);
         primaryStage.show();
     }
 
@@ -123,6 +123,7 @@ public class GameBoard extends Application {
 
         int topSize = 11;
         int sideSize = 9;
+
 
         LinkedList<Tile> tileList = TReader.returnTileList(); // Get tiles from TileReader
 
