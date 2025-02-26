@@ -24,7 +24,7 @@ public class Player {
               int diceroll1 = DiceRollRandom.nextInt(1,3);
               int diceroll2 = DiceRollRandom.nextInt(1,3);
               int diceRollValue = diceroll1 + diceroll2;
-              noMoves += diceRollValue;
+              noMoves = diceRollValue;
 
               System.out.println("Roll number: " + rollNum + " Dice roll value: " + diceRollValue + " first: " + diceroll1 + " second: " + diceroll2);
 
@@ -60,8 +60,6 @@ public class Player {
 
         return tilePosition;
      }
-
-
 
 
     public int getTilePosition() {
