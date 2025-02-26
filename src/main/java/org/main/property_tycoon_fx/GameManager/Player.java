@@ -37,7 +37,6 @@ public class Player {
                       System.out.println("You rolled a double! Roll again!");
                   } else if (isDouble == 2) {
                       System.out.println("You rolled another double! GO TO JAIL!");
-                      noMoves = 0;      // do not let player move if they roll a double
                       break;
                   }
               } else {
@@ -60,8 +59,6 @@ public class Player {
         System.out.println("Player position: " + tilePosition + "\n");
 
         return tilePosition;
-
-
      }
 
 
@@ -70,7 +67,4 @@ public class Player {
     public int getTilePosition() {
         return tilePosition;
     }
-
-
-
 }
