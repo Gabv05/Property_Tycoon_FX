@@ -16,15 +16,36 @@ public class Player {
 
     private int rollDice() {
           Random DiceRollRandom = new Random();
-          int diceroll1 = DiceRollRandom.nextInt(1,6);
-          int diceroll2 = DiceRollRandom.nextInt(1,6);
-          int diceRollValue = diceroll1 + diceroll2;
-          System.out.println("Dice roll value: " + diceRollValue);
+          int isDouble= 0;
+          int noMoves = 0;
 
-          return(diceRollValue); // How much the player moves
+          // allow player to roll a max of two times if roll is a double
+          for (int rollNum = 0; rollNum < 2; rollNum++) {
+              int diceroll1 = DiceRollRandom.nextInt(1,3);
+              int diceroll2 = DiceRollRandom.nextInt(1,3);
+              int diceRollValue = diceroll1 + diceroll2;
+              noMoves += diceRollValue;
 
+              System.out.println("Roll number: " + rollNum + " Dice roll value: " + diceRollValue + " first: " + diceroll1 + " second: " + diceroll2);
 
-        // Chloe add logic blah here
+              // if player rolls a double
+              if (diceroll1 == diceroll2) {
+                  noMoves = 0;      // do not let player move if they roll a double
+                  isDouble ++;
+                  // if player rolls a double once
+                  if (isDouble == 1) {
+                      System.out.println("You rolled a double! Roll again!");
+                  } else if (isDouble == 2) {
+                      System.out.println("You rolled another double! GO TO JAIL!");
+                      noMoves = 0;      // do not let player move if they roll a double
+                      break;
+                  }
+              } else {
+                  break;    // if roll is not a double, break out and return noMoves
+              }
+          }
+
+          return noMoves;
      }
 
      public int move()
@@ -36,14 +57,11 @@ public class Player {
             tilePosition = minimumPosition + difference;
         }
 
-        System.out.println("Player position: " + tilePosition);
+        System.out.println("Player position: " + tilePosition + "\n");
 
         return tilePosition;
 
 
-         // Chloe add logic blah here
-
-         // chloe test
      }
 
 

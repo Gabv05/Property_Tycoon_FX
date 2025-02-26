@@ -18,14 +18,9 @@ public class GameManager extends Application {
 
         Gameboard.start(primaryStage);
 
-        // Test Push
-        for (int i = 1; i < 10; i++) {
-            System.out.println("Test");
-        }
-
     // test roll
         Player player1= new Player(1, "Marcel");
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             player1.move();
         }
 // lauren was here
