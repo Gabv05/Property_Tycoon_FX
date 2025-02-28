@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment=" works but a little fucked part 3">
+    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="added in what happens if a double is rolled">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Bank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +30,12 @@
     &quot;assignee&quot;: &quot;Lewis12z&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Gabv05/Property_Tycoon_FX.git",
-    "accountId": "a8f59dae-e572-4d15-a28e-50e57d0ad453"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Gabv05/Property_Tycoon_FX.git&quot;,
+    &quot;accountId&quot;: &quot;07448cca-6e7e-4d59-93bd-7bd4d987de07&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -120,6 +117,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -132,6 +137,11 @@
       <workItem from="1739896850656" duration="113000" />
       <workItem from="1739897218785" duration="254000" />
       <workItem from="1740420593479" duration="126000" />
+      <workItem from="1740506046746" duration="1429000" />
+      <workItem from="1740590274731" duration="10743000" />
+      <workItem from="1740773828661" duration="71000" />
+      <workItem from="1740773907344" duration="62000" />
+      <workItem from="1740773977823" duration="20000" />
     </task>
     <task id="LOCAL-00001" summary="Made Basic Display layout">
       <option name="closed" value="true" />
@@ -237,7 +247,39 @@
       <option name="project" value="LOCAL" />
       <updated>1740505214940</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="test">
+      <option name="closed" value="true" />
+      <created>1740507576151</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1740507576151</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added in what happens if a double is rolled">
+      <option name="closed" value="true" />
+      <created>1740597616957</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1740597616957</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added in what happens if a double is rolled">
+      <option name="closed" value="true" />
+      <created>1740599129997</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1740599129997</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added in what happens if a double is rolled">
+      <option name="closed" value="true" />
+      <created>1740599772711</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1740599772711</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,6 +307,8 @@
     <MESSAGE value=" works but a little fucked" />
     <MESSAGE value=" works but a little fucked part 2" />
     <MESSAGE value=" works but a little fucked part 3" />
-    <option name="LAST_COMMIT_MESSAGE" value=" works but a little fucked part 3" />
+    <MESSAGE value="test" />
+    <MESSAGE value="added in what happens if a double is rolled" />
+    <option name="LAST_COMMIT_MESSAGE" value="added in what happens if a double is rolled" />
   </component>
 </project>
