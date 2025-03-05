@@ -1,7 +1,16 @@
 package org.main.property_tycoon_fx.GameManager;
 
 import javafx.scene.image.Image;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tile {
@@ -56,6 +65,50 @@ public class Tile {
 
     public boolean isCanBeBought() {
         return canBeBought;
+    }
+
+    public void setCanBeBought(boolean CanBeBought) {
+        canBeBought = CanBeBought;
+        try {
+            // Load the Excel file
+            FileInputStream file = new FileInputStream(new File("data/PropertyTycoonBoardData.xlsx"));
+            Workbook workbook = new XSSFWorkbook(file);
+            Sheet sheet = workbook.getSheetAt(0); // Get first sheet
+
+            int rowNum = (int) (this.getPosition() + 3);
+            int colNum = 5;
+
+            Row row = sheet.getRow(rowNum);
+            if (row == null) {
+                row = sheet.createRow(rowNum);
+            }
+
+            Cell cell = row.getCell(colNum);
+            if (cell == null) {
+                cell = ((Row) row).createCell(colNum);
+            }
+
+            if(canBeBought)
+            {
+                cell.setCellValue("Yes");
+            }
+            else
+            {
+                cell.setCellValue("No");
+            }
+
+
+            // Save the changes
+            file.close();
+            FileOutputStream outFile = new FileOutputStream(new File("data/PropertyTycoonBoardDataTest.xlsx"));
+            workbook.write(outFile);
+            workbook.close();
+            outFile.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error updating Excel file: " + e.getMessage());
+        }
     }
 
     public double getCost() {

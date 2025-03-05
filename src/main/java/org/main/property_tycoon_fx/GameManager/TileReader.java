@@ -119,7 +119,6 @@ public class TileReader {
                                 }
                                 break;
                             default:
-                                System.out.println("Error");
                                 break;
                         }
                     }

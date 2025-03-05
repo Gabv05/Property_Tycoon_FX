@@ -2,16 +2,57 @@ package org.main.property_tycoon_fx.GameManager;
 
 import javafx.scene.image.Image;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Player {
+
+    private int playerID;
+    private String playerName;
+    private int Money;
+
       private int tilePosition = 0;
       private int minimumPosition = 0;
       private int maxPosition = 39;
 
      // Tile CurrentTile;
 
-    public Player(int playerID, String playerName) {
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
+    }
+
+    public int getMoney() {
+        return Money;
+    }
+
+    public void setMoney(int money) {
+        Money = money;
+    }
+
+    public int getTilePosition() {
+        return tilePosition;
+    }
+
+    public Player(int playerID, String playerName, int Money) {
+        this.Money = Money;
+        this.playerID = playerID;
+        this.playerName = playerName;
     }
 
     private int rollDice() {
@@ -62,7 +103,27 @@ public class Player {
      }
 
 
-    public int getTilePosition() {
-        return tilePosition;
+    public void buyTileProperty(int tilePosition)
+    {
+        // Get List of tiles from Excel
+        TileReader TReader = new TileReader();
+        TReader.getTileDetails(); // Load tile details from Excel
+        LinkedList<Tile> tileList = TReader.returnTileList(); // Get tiles from TileReader
+        Tile currentTile = tileList.get(tilePosition);
+        if(currentTile.isCanBeBought())
+        {
+            if (this.Money >= currentTile.getCost())
+            {
+              this.Money -= (int) currentTile.getCost();
+              // The thing to make it like update on excel
+                System.out.println("Cha Ching, Bought "+ currentTile.getSpace());
+                currentTile.setCanBeBought(false);
+            }
+            else
+            {
+                System.out.println("You Broke or tile no can be bought lol");
+            }
+        }
     }
+
 }
