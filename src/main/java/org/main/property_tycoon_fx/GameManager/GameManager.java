@@ -13,6 +13,9 @@ public class GameManager extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        CardReader CardReader = new CardReader();
+        CardReader.getCardDetails();
+
         GameBoard Gameboard = new GameBoard();
      //   ArrayList<Tile> GameTiles = new ArrayList<>();
 

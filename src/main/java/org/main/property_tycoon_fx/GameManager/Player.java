@@ -26,7 +26,7 @@ public class Player {
               int diceRollValue = diceroll1 + diceroll2;
               noMoves = diceRollValue;
 
-              System.out.println("Roll number: " + rollNum + " Dice roll value: " + diceRollValue + " first: " + diceroll1 + " second: " + diceroll2);
+            //  System.out.println("Roll number: " + rollNum + " Dice roll value: " + diceRollValue + " first: " + diceroll1 + " second: " + diceroll2);
 
               // if player rolls a double
               if (diceroll1 == diceroll2) {
@@ -34,9 +34,9 @@ public class Player {
                   isDouble ++;
                   // if player rolls a double once
                   if (isDouble == 1) {
-                      System.out.println("You rolled a double! Roll again!");
-                  } else if (isDouble == 2) {
-                      System.out.println("You rolled another double! GO TO JAIL!");
+              //        System.out.println("You rolled a double! Roll again!");
+                  } else if (isDouble == 2) { //TODO need to make player go to the jail position if 2 doubles are rolled
+              //        System.out.println("You rolled another double! GO TO JAIL!");
                       break;
                   }
               } else {
@@ -56,7 +56,7 @@ public class Player {
             tilePosition = minimumPosition + difference;
         }
 
-        System.out.println("Player position: " + tilePosition + "\n");
+      //  System.out.println("Player position: " + tilePosition + "\n");
 
         return tilePosition;
      }
