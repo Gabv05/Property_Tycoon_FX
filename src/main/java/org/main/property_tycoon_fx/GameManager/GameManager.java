@@ -13,16 +13,25 @@ public class GameManager extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        CardReader CardReader = new CardReader();
+        CardReader.getCardDetails();
+
         GameBoard Gameboard = new GameBoard();
-     //   ArrayList<Tile> GameTiles = new ArrayList<>();
+      // ArrayList<Tile> GameTiles = new ArrayList<>();
 
         Gameboard.start(primaryStage);
 
     // test roll
-        Player player1= new Player(1, "Marcel");
+        Player player1= new Player(1, "Marcel", 0);
         for (int i = 0; i < 10; i++) {
             player1.move();
+
         }
+
+        // test
+        player1.buyTileProperty(player1.getTilePosition());
+
+
 // lauren was here
 
     }

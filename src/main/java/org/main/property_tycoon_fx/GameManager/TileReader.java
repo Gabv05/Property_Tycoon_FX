@@ -22,8 +22,8 @@ public class TileReader {
     private boolean canBeBought; //shows if tile can be bought by the player
     private double cost; //shows cost of tile if it can be bought by player
     private double[] rent; //shows cost of rent if player has property on the tile and someone steps on it
-
     private LinkedList<Tile> tileList; //linked list of all of the tiles on the board
+
     public void getTileDetails() {
         rent = new double[6];
         tileList = new LinkedList<>();
@@ -119,7 +119,6 @@ public class TileReader {
                                 }
                                 break;
                             default:
-                                System.out.println("Error");
                                 break;
                         }
                     }

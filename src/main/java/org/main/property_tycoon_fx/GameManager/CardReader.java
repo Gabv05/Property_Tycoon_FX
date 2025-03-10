@@ -17,12 +17,17 @@ public class CardReader {
     private String type;
     private int nrOfPotLucks;
     private int nrOfOpportunityKnocks;
+    private int nrOfCards;
+    private LinkedList<Card> cardList;
 
     public void getCardDetails() {
-
+        nrOfPotLucks = 17;
+        nrOfOpportunityKnocks = 16;
+        nrOfCards = 0;
+        cardList = new LinkedList<>();
         try {
             //getting path to the board data .xlsx file
-            FileInputStream file = new FileInputStream(new File("data/~$PropertyTycoonCardData.xlsx"));
+            FileInputStream file = new FileInputStream(new File("data/PropertyTycoonCardData.xlsx"));
 
             //creating a workbook instance for reading the Excel file
             Workbook workbook = new XSSFWorkbook(file);
@@ -31,7 +36,7 @@ public class CardReader {
             Sheet sheet = workbook.getSheetAt(0);
 
             //iterate over rows between 5 and 44 (inclusive)
-            for (int i = 6; i <= nrOfPotLucks+nrOfOpportunityKnocks+9; i++) {  //card data starts at row 6, there are 9 empty spaces which do not hold card data
+            for (int i = 2; i <= nrOfPotLucks+nrOfOpportunityKnocks+2; i++) {
                 Row row = sheet.getRow(i);
                 if (row != null) {  //check if the row is not null
                     for (Cell cell : row) {
@@ -42,7 +47,7 @@ public class CardReader {
                             case 0:
                                 description = cell.getStringCellValue();
                                 break;
-                            case 1:
+                            case 3:
                                 action = cell.getStringCellValue();
                                 break;
                             default:
@@ -50,8 +55,14 @@ public class CardReader {
                                 break;
                         }
                     }
-
-
+                    nrOfCards++;
+                    if (nrOfCards <= nrOfPotLucks) {
+                        type = "Potluck";
+                    } else  {
+                        type = "Opportunity Knocks";
+                    }
+                    Card card = new Card(type, description, action);
+                    cardList.add(card);
                 }
             }
 
