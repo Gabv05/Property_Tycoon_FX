@@ -1,7 +1,8 @@
-package org.main.property_tycoon_fx.GameManager;
-
 import org.junit.jupiter.api.Test;
+import org.main.property_tycoon_fx.GameManager.Tile;
+import org.main.property_tycoon_fx.GameManager.TileReader;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +16,7 @@ class TileReaderTest {
         testTileReader.getTileDetails();
         LinkedList<Tile> testTileList = testTileReader.returnTileList();
         Tile testTile = testTileList.getFirst();
+
         assertEquals(1.0, testTile.getPosition()); //position of the GO tile is 1.0
     }
 
@@ -31,7 +33,7 @@ class TileReaderTest {
         testTileReader.getTileDetails();
         LinkedList<Tile> testTileList = testTileReader.returnTileList();
         Tile testTile = testTileList.getFirst();
-        assertEquals("Go", testTile.getGroup()); //as of 23/02 the group of Go is null, however note that this will chang
+        assertEquals(null, testTile.getGroup()); //as of 23/02 the group of Go is null, however note that this will chang
     }
 
     @Test

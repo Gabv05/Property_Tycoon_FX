@@ -75,6 +75,4 @@ public class CardReader {
             e.printStackTrace();
         }
     }
-
-    public LinkedList<Card> returnCardList() {return cardList;}
 }
