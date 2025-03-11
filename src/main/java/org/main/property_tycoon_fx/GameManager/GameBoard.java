@@ -14,13 +14,29 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.apache.poi.ss.formula.functions.T;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class GameBoard extends Application {
     private Dice dice;
+    private BorderPane boardPane = new BorderPane();
+
+    public static List<String> availableTokens = new ArrayList<>(Arrays.asList(
+            "boot",
+            "ship",
+            "smartphone",
+            "hatstand"
+    ));
+
+    public String giveToken(){
+        // get random token name
+        int randomIndex = new Random().nextInt(availableTokens.size() - 1);
+        System.out.println("index: " + randomIndex + " taken token = " + availableTokens.get(randomIndex));
+        String token = availableTokens.get(randomIndex);
+        availableTokens.remove(randomIndex);
+        System.out.println("arraylist = " + availableTokens);
+
+        return token;
+    }
 
     public static void main(String[] args) {
         launch(args);
@@ -37,7 +53,7 @@ public class GameBoard extends Application {
         double sceneHeight = 1080;
 
         // Create pane for board:
-        BorderPane boardPane = new BorderPane();
+
         boardPane.setStyle("-fx-background-color: beige;");
         boardPane.setLayoutX(sceneWidth * 0.025); // Start 5% from the left
         boardPane.setLayoutY(sceneHeight * 0.05); // Slight top margin
@@ -103,27 +119,6 @@ public class GameBoard extends Application {
         //
         dice = new Dice(DicePane, sceneWidth, sceneHeight);
 
-
-
-        // show image of first dice
-        //
-        //Image diceImage1 = dice1.randomDiceImage();
-        //ImageView diceImageView1 = new ImageView(diceImage1);
-        // set position in pane
-        //diceImageView1.setTranslateX(sceneWidth * 0.1);
-        //diceImageView1.setTranslateY(sceneHeight * 0.01);
-        //DicePane.getChildren().add(diceImageView1);
-
-        // show image of second dice
-        //
-        //Image diceImage2 = dice2.randomDiceImage();
-        //ImageView diceImageView2 = new ImageView(diceImage2);
-        // set position in pane
-        //diceImageView2.setTranslateX(sceneWidth * 0.165);
-        //diceImageView2.setTranslateY(sceneHeight * 0.01);
-        //DicePane.getChildren().add(diceImageView2);
-
-
         // Create the main group to hold everything
         Group mainGroup = new Group();
         mainGroup.getChildren().addAll(boardPane, bankPane, DicePane);
@@ -137,6 +132,13 @@ public class GameBoard extends Application {
         primaryStage.setScene(gameScene);
         primaryStage.setFullScreen(false);
         primaryStage.show();
+    }
+
+    // add player ImageView to boardPane
+    public void addPlayerImage(Player player, double x){
+        ImageView imageView = player.playerImageView();
+        imageView.setTranslateX(x);
+        boardPane.getChildren().add(imageView);
     }
 
     public Dice getDice(){

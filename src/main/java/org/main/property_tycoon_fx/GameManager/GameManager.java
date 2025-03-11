@@ -4,9 +4,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class GameManager extends Application {
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -23,6 +24,9 @@ public class GameManager extends Application {
 
     // test roll
         Player player1= new Player(1, "Marcel", 0, Gameboard);
+        Player player2= new Player(2, "Chloe", 1, Gameboard);
+        Gameboard.addPlayerImage(player1, 200);  // add player to boardPane
+        Gameboard.addPlayerImage(player2, 300);
         //for (int i = 0; i < 10; i++) {
             //player1.move();
         //}

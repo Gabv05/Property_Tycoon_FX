@@ -1,9 +1,11 @@
 package org.main.property_tycoon_fx.GameManager;
 
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -20,6 +22,7 @@ public class Player {
     private int playerID;
     private String playerName;
     private int Money;
+    private String token;
 
     // to access dice
     private GameBoard gameBoard;    // let player reference gameboard
@@ -30,46 +33,8 @@ public class Player {
       private int minimumPosition = 0;
       private int maxPosition = 39;
 
-      // get array of token types and convert to array list
-      String[] tokenTypesArr = {"boot", "smartphone", "ship", "hatstand"};
-      List<String> tokenTypesList = Arrays.asList(tokenTypesArr);
-      ArrayList<String> tokenTypesAL = new ArrayList<>(tokenTypesList);
-
-
 
      // Tile CurrentTile;
-
-    private ArrayList<String> updateArrayList(ArrayList<String> tokensAL) {
-        System.out.println(tokensAL);
-        return tokensAL;
-    }
-
-    private int randomIndex(ArrayList<String> tokensAL) {
-        int randomIndex = new Random().nextInt(tokensAL.size());
-        System.out.println(randomIndex);
-        return randomIndex;
-    }
-
-    private String tokenString(int index, ArrayList<String> tokensAL) {
-        String tokenName = tokensAL.get(index);
-        System.out.println(tokenName);
-        // update array list:
-        tokensAL.remove(index);
-        updateArrayList(tokensAL);
-
-        return tokenName;
-    }
-
-    private ImageView playerImageView(){
-        // get random string for image path
-        String tokenName = tokenString(randomIndex(tokenTypesAL), tokenTypesAL);
-        Image tokenImage = new Image("/images/" + tokenName + "_token.png", 100, 100, true, true);
-        ImageView tokenIV = new ImageView(tokenImage);
-
-        return tokenIV;
-    }
-
-
 
     public String getPlayerName() {
         return playerName;
@@ -99,13 +64,13 @@ public class Player {
         return tilePosition;
     }
 
-
     public Player(int playerID, String playerName, int Money, GameBoard gameBoard) {
         this.Money = Money;
         this.playerID = playerID;
         this.playerName = playerName;
         this.gameBoard = gameBoard;
         this.dice = gameBoard.getDice();    // get dice object created in gameboard
+        this.token = gameBoard.giveToken();
 
         // when button is clicked move
         this.rollButton = dice.getRollButton();
@@ -113,19 +78,6 @@ public class Player {
             System.out.println("Button Clicked");
             move();
         });
-
-        // test AL
-        System.out.println(tokenTypesAL + " size = " + tokenTypesAL.size());
-        playerImageView();
-
-
-        Image playerToken = new Image("/images/ship_token.png", 100, 0, true, true);
-        ImageView playerTokenImageView = new ImageView(playerToken);
-        // set position
-        playerTokenImageView.setX(500);
-        playerTokenImageView.setY(500);
-        // create group and scene object
-
     }
 
     // roll the dice
@@ -137,6 +89,13 @@ public class Player {
     }
 
 
+    public ImageView playerImageView() {
+        System.out.println(playerName + " is: " + token);
+        // create image and imageview
+        Image tokenImage = new Image("/images/" + token + "_token.png", 60, 60, true, true);
+        ImageView imageView = new ImageView(tokenImage);
+        return imageView;
+    }
 
      public int move()
      {
