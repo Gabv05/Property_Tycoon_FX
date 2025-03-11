@@ -1,25 +1,75 @@
 package org.main.property_tycoon_fx.GameManager;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class Player {
-
     private int playerID;
     private String playerName;
     private int Money;
+
+    // to access dice
+    private GameBoard gameBoard;    // let player reference gameboard
+    private Dice dice;
+    private Button rollButton;
 
       private int tilePosition = 0;
       private int minimumPosition = 0;
       private int maxPosition = 39;
 
+      // get array of token types and convert to array list
+      String[] tokenTypesArr = {"boot", "smartphone", "ship", "hatstand"};
+      List<String> tokenTypesList = Arrays.asList(tokenTypesArr);
+      ArrayList<String> tokenTypesAL = new ArrayList<>(tokenTypesList);
+
+
+
      // Tile CurrentTile;
+
+    private ArrayList<String> updateArrayList(ArrayList<String> tokensAL) {
+        System.out.println(tokensAL);
+        return tokensAL;
+    }
+
+    private int randomIndex(ArrayList<String> tokensAL) {
+        int randomIndex = new Random().nextInt(tokensAL.size());
+        System.out.println(randomIndex);
+        return randomIndex;
+    }
+
+    private String tokenString(int index, ArrayList<String> tokensAL) {
+        String tokenName = tokensAL.get(index);
+        System.out.println(tokenName);
+        // update array list:
+        tokensAL.remove(index);
+        updateArrayList(tokensAL);
+
+        return tokenName;
+    }
+
+    private ImageView playerImageView(){
+        // get random string for image path
+        String tokenName = tokenString(randomIndex(tokenTypesAL), tokenTypesAL);
+        Image tokenImage = new Image("/images/" + tokenName + "_token.png", 100, 100, true, true);
+        ImageView tokenIV = new ImageView(tokenImage);
+
+        return tokenIV;
+    }
+
+
 
     public String getPlayerName() {
         return playerName;
@@ -49,56 +99,55 @@ public class Player {
         return tilePosition;
     }
 
-    public Player(int playerID, String playerName, int Money) {
+
+    public Player(int playerID, String playerName, int Money, GameBoard gameBoard) {
         this.Money = Money;
         this.playerID = playerID;
         this.playerName = playerName;
+        this.gameBoard = gameBoard;
+        this.dice = gameBoard.getDice();    // get dice object created in gameboard
+
+        // when button is clicked move
+        this.rollButton = dice.getRollButton();
+        rollButton.setOnAction(actionEvent -> {
+            System.out.println("Button Clicked");
+            move();
+        });
+
+        // test AL
+        System.out.println(tokenTypesAL + " size = " + tokenTypesAL.size());
+        playerImageView();
+
+
+        Image playerToken = new Image("/images/ship_token.png", 100, 0, true, true);
+        ImageView playerTokenImageView = new ImageView(playerToken);
+        // set position
+        playerTokenImageView.setX(500);
+        playerTokenImageView.setY(500);
+        // create group and scene object
+
     }
 
-    private int rollDice() {
-          Random DiceRollRandom = new Random();
-          int isDouble= 0;
-          int noMoves = 0;
+    // roll the dice
+    public int getMoveValue(){
+        int totalMovement = dice.rollDice();    // get total move value from dice object
+        //System.out.println(playerName + " total movement: " + totalMovement);
 
-          // allow player to roll a max of two times if roll is a double
-          for (int rollNum = 0; rollNum < 2; rollNum++) {
-              int diceroll1 = DiceRollRandom.nextInt(1,3);
-              int diceroll2 = DiceRollRandom.nextInt(1,3);
-              int diceRollValue = diceroll1 + diceroll2;
-              noMoves = diceRollValue;
+        return totalMovement;
+    }
 
-            //  System.out.println("Roll number: " + rollNum + " Dice roll value: " + diceRollValue + " first: " + diceroll1 + " second: " + diceroll2);
 
-              // if player rolls a double
-              if (diceroll1 == diceroll2) {
-                  noMoves = 0;      // do not let player move if they roll a double
-                  isDouble ++;
-                  // if player rolls a double once
-                  if (isDouble == 1) {
-              //        System.out.println("You rolled a double! Roll again!");
-                  } else if (isDouble == 2) { //TODO need to make player go to the jail position if 2 doubles are rolled
-              //        System.out.println("You rolled another double! GO TO JAIL!");
-                      break;
-                  }
-              } else {
-                  break;    // if roll is not a double, break out and return noMoves
-              }
-          }
-
-          return noMoves;
-     }
 
      public int move()
      {
-        tilePosition = tilePosition + rollDice();
+        tilePosition = tilePosition + getMoveValue();
 
         if (tilePosition > maxPosition) {
             int difference = tilePosition - maxPosition;
             tilePosition = minimumPosition + difference;
         }
 
-      //  System.out.println("Player position: " + tilePosition + "\n");
-
+        System.out.println(tilePosition);
         return tilePosition;
      }
 

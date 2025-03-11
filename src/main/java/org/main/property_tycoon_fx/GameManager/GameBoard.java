@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -16,8 +17,10 @@ import org.apache.poi.ss.formula.functions.T;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class GameBoard extends Application {
+    private Dice dice;
 
     public static void main(String[] args) {
         launch(args);
@@ -26,6 +29,7 @@ public class GameBoard extends Application {
     @Override
     public void start(Stage primaryStage) {
         SetUpBoard(primaryStage);
+
     }
 
     private void SetUpBoard(Stage primaryStage) {
@@ -95,6 +99,31 @@ public class GameBoard extends Application {
         DicePane.setPrefHeight(sceneHeight * 0.45);
         DicePane.setBorder(Border);
 
+        // create dice object and show image
+        //
+        dice = new Dice(DicePane, sceneWidth, sceneHeight);
+
+
+
+        // show image of first dice
+        //
+        //Image diceImage1 = dice1.randomDiceImage();
+        //ImageView diceImageView1 = new ImageView(diceImage1);
+        // set position in pane
+        //diceImageView1.setTranslateX(sceneWidth * 0.1);
+        //diceImageView1.setTranslateY(sceneHeight * 0.01);
+        //DicePane.getChildren().add(diceImageView1);
+
+        // show image of second dice
+        //
+        //Image diceImage2 = dice2.randomDiceImage();
+        //ImageView diceImageView2 = new ImageView(diceImage2);
+        // set position in pane
+        //diceImageView2.setTranslateX(sceneWidth * 0.165);
+        //diceImageView2.setTranslateY(sceneHeight * 0.01);
+        //DicePane.getChildren().add(diceImageView2);
+
+
         // Create the main group to hold everything
         Group mainGroup = new Group();
         mainGroup.getChildren().addAll(boardPane, bankPane, DicePane);
@@ -108,6 +137,10 @@ public class GameBoard extends Application {
         primaryStage.setScene(gameScene);
         primaryStage.setFullScreen(false);
         primaryStage.show();
+    }
+
+    public Dice getDice(){
+        return dice;
     }
 
     // Create Universal Border:

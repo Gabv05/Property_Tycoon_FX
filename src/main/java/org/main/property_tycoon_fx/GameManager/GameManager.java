@@ -22,11 +22,11 @@ public class GameManager extends Application {
         Gameboard.start(primaryStage);
 
     // test roll
-        Player player1= new Player(1, "Marcel", 0);
-        for (int i = 0; i < 10; i++) {
-            player1.move();
-
-        }
+        Player player1= new Player(1, "Marcel", 0, Gameboard);
+        //for (int i = 0; i < 10; i++) {
+            //player1.move();
+        //}
+        //player1.move();
 
         // test
         player1.buyTileProperty(player1.getTilePosition());
