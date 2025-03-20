@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="Test Push Demo">
+    <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="Buying Stuff :)">
+      <change afterPath="$PROJECT_DIR$/data/PropertyTycoonBoardDataTest.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/0DDCBB00" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/TileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/TileReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740507458318</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Buying Stuff :)">
+      <option name="closed" value="true" />
+      <created>1741195650898</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1741195650899</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,6 +282,7 @@
     <MESSAGE value=" works but a little fucked part 2" />
     <MESSAGE value=" works but a little fucked part 3" />
     <MESSAGE value="Test Push Demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test Push Demo" />
+    <MESSAGE value="Buying Stuff :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buying Stuff :)" />
   </component>
 </project>

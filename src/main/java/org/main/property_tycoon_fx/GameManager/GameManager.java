@@ -22,7 +22,7 @@ public class GameManager extends Application {
         Gameboard.start(primaryStage);
 
     // test roll
-        Player player1= new Player(1, "Marcel", 0);
+        Player player1= new Player(1, "Marcel", 1000);
         for (int i = 0; i < 10; i++) {
             player1.move();
 
