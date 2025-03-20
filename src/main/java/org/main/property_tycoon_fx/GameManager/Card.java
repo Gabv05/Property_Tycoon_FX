@@ -11,10 +11,6 @@ public class Card {
     }
 
     //method to convert description of an action into a code
-    private void convertAction() {
-
-    }
-
     public String getType() {
         return type;
     }
