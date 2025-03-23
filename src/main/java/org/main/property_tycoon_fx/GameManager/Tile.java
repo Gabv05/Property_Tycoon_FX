@@ -123,6 +123,10 @@ public class Tile {
         return isOwnedBy;
     }
 
+    public void setIsOwnedBy(int isOwnedBy) {
+        this.isOwnedBy = isOwnedBy;
+    }
+
     public Image getTileImage() {
         return TileImage;
     }

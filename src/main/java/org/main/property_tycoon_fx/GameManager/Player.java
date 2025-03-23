@@ -126,6 +126,8 @@ public class Player {
               // The thing to make it like update on excel
                 System.out.println("Cha Ching, Bought "+ currentTile.getSpace());
                 currentTile.setCanBeBought(false);
+                currentTile.setIsOwnedBy(this.playerID);
+                System.out.println(currentTile.getSpace() + " Is owned by " + currentTile.getIsOwnedBy());
             }
             else
             {
