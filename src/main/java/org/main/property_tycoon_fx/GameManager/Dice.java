@@ -1,20 +1,13 @@
 package org.main.property_tycoon_fx.GameManager;
 
 import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.awt.*;
 import java.util.Random;
-
-// ignore animation related methods for now - will work on that later on in project
 
 public class Dice {
     private final Random random = new Random();
@@ -26,6 +19,11 @@ public class Dice {
     private int dice1Val;
     private int dice2Val;
     private Button rollButton;
+
+    private int isDouble = 0;
+    private int rollNum = 0;
+    private int noMoves = 0;
+    private boolean canRoll = true; // Control rolling
 
     // get button and dice images and put in the dicePane in gameboard
     public Dice(Pane dicePane, double sceneWidth, double sceneHeight) {
@@ -72,13 +70,6 @@ public class Dice {
         return new Image("/images/dice_" + index + ".png", 100, 0, true, true);
     }
 
-
-    // used as random image for animation
-    public Image randomDiceImage() {
-        int randomInt = random.nextInt(1, 7);
-        return new Image("/images/dice_" + randomInt + ".png", 100, 0, true, true);
-    }
-
     private void getDice1Value(int dice1Value) {
         this.dice1Val = dice1Value;
     }
@@ -101,45 +92,83 @@ public class Dice {
     }
 
 
-    public int rollDice() {
-        int isDouble = 0;
-        int noMoves = 0;
-        int dice1result;
-        int dice2result;
+    // only let another roll if animation has completed
+    private void diceAnimation(Runnable animationComplete) {
+        // show six random images of the dice in 120ms
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.millis(20), event -> {
+                    int randomIndex1 = random.nextInt(1, 6);
+                    dice1 = setDiceImage(randomIndex1);
+                    imageView1.setImage(dice1);
 
-        for (int rollNum = 0; rollNum < 2; rollNum++) {
-            // dice 1:
-            dice1result = random.nextInt(1, 7);
-            getDice1Value(dice1result);
-            dice1 = setDiceImage(setDice1Value());
+                    int randomIndex2 = random.nextInt(1, 6);
+                    dice2 = setDiceImage(randomIndex2);
+                    imageView2.setImage(dice2);
+                }),
+                new KeyFrame(Duration.millis(120))
+        );
+        timeline.setCycleCount(6);
+        // when timeline (random images) complete set the last image shown to be the final dice roll values
+        timeline.setOnFinished(event -> {
+            int finalDice1Value = setDice1Value();
+            int finalDice2Value = setDice2Value();
+
+            dice1 = setDiceImage(finalDice1Value);
             imageView1.setImage(dice1);
-
-            // dice 2:
-            dice2result = random.nextInt(1, 7);
-            getDice2Value(dice2result);
-            dice2 = setDiceImage(setDice2Value());
+            dice2 = setDiceImage(finalDice2Value);
             imageView2.setImage(dice2);
 
+            if (finalDice1Value == finalDice2Value) {
+                Timeline finalDisplayTimeline = new Timeline(
+                        new KeyFrame(Duration.seconds(3))
+                );
+                finalDisplayTimeline.setOnFinished(e -> animationComplete.run());
+                finalDisplayTimeline.play();
+            } else {
+                animationComplete.run();
+            }
+        });
+        timeline.play();
+    }
 
-            int diceRollValue = dice1result + dice2result;
-            noMoves = diceRollValue;
+    public int rollDice() {
+        if (!canRoll) {
+            return noMoves; // Prevent rolling if not allowed.
+        }
 
-            System.out.println("Roll number: " + rollNum + " Dice roll value: " + diceRollValue + " first: " + dice1result + " second: " + dice2result);
+        int dice1result = random.nextInt(1, 6);
+        getDice1Value(dice1result);
+        int dice2result = random.nextInt(1, 6);
+        getDice2Value(dice2result);
 
-            if (dice1result == dice2result) {
+        diceAnimation(() -> { // Callback for animation completion
+            noMoves = setDice1Value() + setDice2Value();
+
+            if (setDice1Value() == setDice2Value()) {
                 noMoves = 0;
                 isDouble++;
                 if (isDouble == 1) {
                     System.out.println("You rolled a double! Roll again!");
-
+                    canRoll = true; // Allow another roll
                 } else if (isDouble == 2) {
                     System.out.println("You rolled another double! GO TO JAIL!");
-                    break;
+                    noMoves = 0;
+                    canRoll = false; // Prevent further rolls
                 }
             } else {
-                break;
+                canRoll = false; // Prevent further rolls
             }
-        }
+        });
+        rollNum++;
         return noMoves;
     }
+
+    public void resetRolls(){
+        isDouble = 0;
+        rollNum = 0;
+        noMoves = 0;
+        canRoll = true;
+    }
+
+
 }

@@ -24,12 +24,14 @@ public class GameBoard extends Application {
             "boot",
             "ship",
             "smartphone",
-            "hatstand"
-    ));
+            "hatstand",
+            "cat",
+            "iron"
+    ));     // will add the other two tokens once finished images
 
     public String giveToken(){
         // get random token name
-        int randomIndex = new Random().nextInt(availableTokens.size() - 1);
+        int randomIndex = new Random().nextInt(availableTokens.size());
         System.out.println("index: " + randomIndex + " taken token = " + availableTokens.get(randomIndex));
         String token = availableTokens.get(randomIndex);
         availableTokens.remove(randomIndex);
