@@ -28,6 +28,7 @@ public class Player {
     private GameBoard gameBoard;    // let player reference gameboard
     private Dice dice;
     private Button rollButton;
+    private boolean turnComplete;
 
       private int tilePosition = 0;
       private int minimumPosition = 0;
@@ -64,6 +65,7 @@ public class Player {
         return tilePosition;
     }
 
+
     public Player(int playerID, String playerName, int Money, GameBoard gameBoard) {
         this.Money = Money;
         this.playerID = playerID;
@@ -71,6 +73,7 @@ public class Player {
         this.gameBoard = gameBoard;
         this.dice = gameBoard.getDice();    // get dice object created in gameboard
         this.token = gameBoard.giveToken();
+        this.turnComplete = turnComplete;
 
         // when button is clicked move
         this.rollButton = dice.getRollButton();
@@ -100,6 +103,7 @@ public class Player {
      public int move()
      {
         tilePosition = tilePosition + getMoveValue();
+        System.out.println(playerName + " position: " + tilePosition);
 
         if (tilePosition > maxPosition) {
             int difference = tilePosition - maxPosition;

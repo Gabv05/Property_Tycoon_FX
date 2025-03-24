@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import org.apache.poi.ss.formula.functions.T;
 
@@ -126,7 +127,6 @@ public class GameBoard extends Application {
         mainGroup.getChildren().addAll(boardPane, bankPane, DicePane);
 
         // Call FillTiles method to populate the board
-
         FillTiles(TopPane, BottomPane, LeftPane, RightPane);
 
         // Create the scene and set it to the primary stage

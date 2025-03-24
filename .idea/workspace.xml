@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/cat_token.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/iron_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/ship_token.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Dice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/ship_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/ship_token.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,30 +56,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.GameBoard.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.GameManager.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TileReaderTest.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/gabrielvasile/Documents/Year 2 Uni/Software Engineering/Property_Tycoon_FX&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.GameBoard.executor": "Debug",
+    "Application.GameManager.executor": "Run",
+    "JUnit.TileReaderTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/gabrielvasile/Documents/Year 2 Uni/Software Engineering/Property_Tycoon_FX",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -156,6 +145,7 @@
       <workItem from="1742138319533" duration="301000" />
       <workItem from="1742239512831" duration="2108000" />
       <workItem from="1742760693212" duration="329000" />
+      <workItem from="1742762869665" duration="6517000" />
     </task>
     <task id="LOCAL-00001" summary="Made Basic Display layout">
       <option name="closed" value="true" />
