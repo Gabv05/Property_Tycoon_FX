@@ -70,8 +70,7 @@ public class CardReader {
             workbook.close();
             file.close();
 
-        } catch (
-                IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

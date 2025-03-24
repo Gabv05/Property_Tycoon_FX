@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/cat_token.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/iron_token.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/dice_6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49_[Changes]1/ship_token.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_03_2025_14_49__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_03_2025_01_18_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Dice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/ship_token.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/ship_token.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Bank.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,12 +31,12 @@
     &quot;assignee&quot;: &quot;Lewis12z&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Gabv05/Property_Tycoon_FX.git&quot;,
-    &quot;accountId&quot;: &quot;07448cca-6e7e-4d59-93bd-7bd4d987de07&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Gabv05/Property_Tycoon_FX.git",
+    "accountId": "6743b2ae-f138-4939-a0d6-8319052cc755"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -134,8 +122,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
       </set>
     </attachedChunks>
   </component>
@@ -156,6 +144,7 @@
       <workItem from="1742138319533" duration="301000" />
       <workItem from="1742239512831" duration="2108000" />
       <workItem from="1742760693212" duration="329000" />
+      <workItem from="1742763654461" duration="454000" />
     </task>
     <task id="LOCAL-00001" summary="Made Basic Display layout">
       <option name="closed" value="true" />
