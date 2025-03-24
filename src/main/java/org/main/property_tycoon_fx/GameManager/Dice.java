@@ -23,7 +23,7 @@ public class Dice {
 
     private int isDouble = 0;
     private int rollNum = 0;
-    private int noMoves = 0;
+    private int noMoves;
     private boolean canRoll = true; // Control rolling
 
     // get button and dice images and put in the dicePane in gameboard
@@ -33,10 +33,10 @@ public class Dice {
         // roll button
         //
         this.rollButton = new Button();
-        rollButton.setPrefWidth(100);
-        rollButton.setPrefHeight(30);
+        rollButton.setPrefWidth(sceneWidth * 0.05);
+        rollButton.setPrefHeight(sceneHeight * 0.03);
         // graphics of button
-        Image buttonImage = (new Image("/images/rollButton.png", 100, 0, true, true));
+        Image buttonImage = (new Image("/images/rollButton.png", sceneWidth * 0.05, 0, true, true));
         ImageView buttonImageView = new ImageView(buttonImage);
         // apply css to get rid of padding on button to only show image
         rollButton.setStyle("-fx-padding: 0;");
@@ -63,8 +63,11 @@ public class Dice {
         // set position in pane
         imageView2.setTranslateX(sceneWidth * 0.165);
         imageView2.setTranslateY(sceneHeight * 0.01);
+
         dicePane.getChildren().add(imageView2);
     }
+
+    public boolean allowRoll(){ return canRoll; }
 
     // to set a specific dice image
     public Image getDiceImage(int index) {
@@ -132,9 +135,13 @@ public class Dice {
         timeline.play();
     }
 
+    public boolean canRollAgain(){
+        return canRoll;
+    }
+
     public int rollDice() {
         if (!canRoll) {
-            return noMoves; // Prevent rolling if not allowed.
+            return 0; // Prevent rolling if not allowed.
         }
 
         int dice1result = random.nextInt(1, 6);
@@ -143,28 +150,30 @@ public class Dice {
         setDice2Value(dice2result);
         noMoves = getDice1Value() + getDice2Value();
 
-        diceAnimation(() -> { // Callback for animation completion
-
-
-            if (getDice1Value() == getDice2Value()) {
-                noMoves = 0;
-                isDouble++;
-                if (isDouble == 1) {
-                    System.out.println("You rolled a double! Roll again!");
-                    canRoll = true; // Allow another roll
-                } else if (isDouble == 2) {
-                    System.out.println("You rolled another double! GO TO JAIL!");
-                    noMoves = 0;
-                    canRoll = false; // Prevent further rolls
-                }
-            } else {
+        if (getDice1Value() == getDice2Value()) {
+            noMoves = 0;
+            isDouble++;
+            if (isDouble == 1) {
+                System.out.println("You rolled a double! Roll again!");
+                canRoll = true; // Allow another roll if first double
+                //rollButton.setDisable(false);
+            } else if (isDouble == 2) {
+                System.out.println("You rolled another double! GO TO JAIL!");
                 canRoll = false; // Prevent further rolls
-                System.out.println("Valid roll!" + noMoves);
             }
-        });
+        } else {
+            canRoll = false; // Prevent further rolls
+
+            System.out.println("Valid roll!" + noMoves);
+        }
+
+        diceAnimation(() -> {}); // Callback for animation completion
+
         rollNum++;
+        //rollButton.setDisable(true);
         return noMoves;
     }
+
 
     public void resetRolls(){
         isDouble = 0;
@@ -172,6 +181,4 @@ public class Dice {
         noMoves = 0;
         canRoll = true;
     }
-
-
 }

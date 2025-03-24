@@ -19,6 +19,7 @@ import java.util.*;
 
 public class GameBoard extends Application {
     private Dice dice;
+    private EndTurnButton endTurnButton;
     private BorderPane boardPane = new BorderPane();
 
     public static List<String> availableTokens = new ArrayList<>(Arrays.asList(
@@ -118,9 +119,12 @@ public class GameBoard extends Application {
         DicePane.setPrefHeight(sceneHeight * 0.45);
         DicePane.setBorder(Border);
 
-        // create dice object and show image
+        // create button objects and show image
         //
         dice = new Dice(DicePane, sceneWidth, sceneHeight);
+        //setDice(dice);
+        endTurnButton = new EndTurnButton(DicePane, sceneWidth, sceneHeight);
+
 
         // Create the main group to hold everything
         Group mainGroup = new Group();
@@ -143,9 +147,16 @@ public class GameBoard extends Application {
         boardPane.getChildren().add(imageView);
     }
 
+    //public void setDice(Dice dice){
+    //    this.dice = dice;
+    //}
+
     public Dice getDice(){
         return dice;
     }
+
+    public EndTurnButton getEndTurnButton(){return endTurnButton;}
+
 
     // Create Universal Border:
     public Border Border = new Border(new BorderStroke(Color.BLACK, // Border color
