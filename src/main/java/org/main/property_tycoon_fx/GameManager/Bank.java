@@ -1,6 +1,10 @@
 package org.main.property_tycoon_fx.GameManager;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Bank {
+    Scanner scan;
 
     public Bank() {
     }
@@ -13,28 +17,54 @@ public class Bank {
        player.setMoney(player.getMoney() + giveSum);
     }
 
-    private void holdAuction(Player participant, Tile tileProperty) {
-        //TODO players will need to type in their bid and then enter their player id, after they will keep bidding until one is left
+    public void holdAuction(Tile tileProperty, ArrayList<Player> playersList) {
         int startingPrice = 0;
-        int playerBid = 0;
-        int participantMoney = participant.getMoney();
+        int participantMoney = 0;
+        int playerID = -1;
+        Player currentPlayer = null;
+        Player currentWinner = null;
+        boolean auctionEnd = false;
 
+        scan = new Scanner(System.in);
 
         System.out.println("-----------------------------------------------");
         System.out.println("Auction");
         System.out.println("-----------------------------------------------");
-        System.out.println("Please enter your bid or drop out of auction:");
-        System.out.println("Please enter your name or token ID:");
+        while (!auctionEnd) {
+            int playerBid = 0;
+            String answer = null;
+            System.out.print("Are 2 or more players still willing to bid? (Y/N): ");
+            answer = scan.nextLine();
+            if (answer.equalsIgnoreCase("Y")) {
+                System.out.print("Please enter your player ID: ");
+                while (currentPlayer == null) {
+                    playerID = scan.nextInt();
+                    for (int i = 0; i < playersList.size(); i++) {
+                        if (playersList.get(i).getPlayerID() == playerID) {
+                            currentPlayer = playersList.get(i);
+                        }
+                    }
+                }
+                participantMoney = currentPlayer.getMoney();
+                System.out.print("Please enter your amount to bid for: ");
+                playerBid = scan.nextInt();
 
-        if (playerBid > participantMoney) {
-            System.out.println("Not enough money to bid");
-            //TODO [kick player out the auction]
-        } else {
-            startingPrice += playerBid;
+                if (playerBid > participantMoney) {
+                    System.out.println("Not enough money to bid");
+                } else if (startingPrice + playerBid <= participantMoney) {
+                    startingPrice += playerBid;
+                    currentWinner = currentPlayer;
+                } else {
+                    System.out.println("Your bid is too high for your bank balance");
+                }
+
+                System.out.println("The current bid is: " + startingPrice);
+
+            }
         }
 
-        //TODO if one player is left, they get the property
-
+        tileProperty.setIsOwnedBy(currentWinner.getPlayerID());
+        System.out.println("Auction winner is: " + currentWinner.getPlayerID());
     }
 
     private void takeProperty() {

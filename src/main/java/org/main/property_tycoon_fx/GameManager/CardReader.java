@@ -51,7 +51,6 @@ public class CardReader {
                                 action = cell.getStringCellValue();
                                 break;
                             default:
-                                System.out.println("Error");
                                 break;
                         }
                     }
