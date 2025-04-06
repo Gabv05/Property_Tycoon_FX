@@ -43,7 +43,7 @@ public class GameManager extends Application {
         Gameboard.addPlayerImage(player2, 300);
 
         Bank bank = new Bank();
-        bank.holdAuction(new Tile(45, "Test", "TestG", null, true, 30, null, 0), players);
+        //bank.holdAuction(new Tile(45, "Test", "TestG", null, true, 30, null, 0), players);
 
         // test
         player1.buyTileProperty(player1.getTilePosition());
