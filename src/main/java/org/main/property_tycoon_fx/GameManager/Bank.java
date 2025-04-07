@@ -1,6 +1,7 @@
 package org.main.property_tycoon_fx.GameManager;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Bank {
@@ -80,8 +81,21 @@ public class Bank {
         System.out.println("Auction winner is: " + currentWinner.getPlayerID());
     }
 
-    private void takeProperty() {
-        //TODO if player is out of money, their lowest valued property is taken and they are paid half the money for it, then its auctioned, repeat until player has more than 0 money
+    private void takeProperty(LinkedList<Tile> tileList, Player player) {
+        int playerId = player.getPlayerID(); //getting the player id
+
+        if (player.getMoney() <= 0) { //if player has ran out of money
+            //searches through the tile list for any properties owned by the player
+           for (Tile tile : tileList) {
+               //if a property is found, it is sold at half price to the bank and the player receives the money
+               if (tile.getIsOwnedBy() == playerId && player.getMoney() <= 0) { //repeated until player has more than 0 cash
+                   tile.setIsOwnedBy(0);
+                   player.setMoney((int)(tile.getCost()/2));
+               } else {
+                   break;
+               }
+           }
+        }
     }
 
 }
