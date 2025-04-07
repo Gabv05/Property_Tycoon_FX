@@ -1,22 +1,10 @@
 package org.main.property_tycoon_fx.GameManager;
 
-import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+
 
 public class Player {
     private int playerID;
@@ -60,32 +48,20 @@ public class Player {
         Money = money;
     }
 
+    public void setTilePosition(int tilePosition) {this.tilePosition = tilePosition;}
+
     public int getTilePosition() {
         return tilePosition;
     }
+
 
     public Player(int playerID, String playerName, int Money, GameBoard gameBoard) {
         this.Money = Money;
         this.playerID = playerID;
         this.playerName = playerName;
         this.gameBoard = gameBoard;
-        this.dice = gameBoard.getDice();    // get dice object created in gameboard
-        this.token = gameBoard.giveToken();
-
-        // when button is clicked move
-        this.rollButton = dice.getRollButton();
-        rollButton.setOnAction(actionEvent -> {
-            System.out.println("Button Clicked");
-            move();
-        });
-    }
-
-    // roll the dice
-    public int getMoveValue(){
-        int totalMovement = dice.rollDice();    // get total move value from dice object
-        //System.out.println(playerName + " total movement: " + totalMovement);
-
-        return totalMovement;
+        dice = gameBoard.getDice();    // get dice object created in gameboard
+        token = gameBoard.giveToken();
     }
 
 
@@ -97,9 +73,23 @@ public class Player {
         return imageView;
     }
 
+    public ImageView playerTabImageView() {
+        System.out.println(playerName + " is tab: " + token);
+        // create image and IV
+        Image tabImage = new Image("/images/" + token + "_tab.png", 328, 0, true, true);
+        ImageView tabImageView = new ImageView(tabImage);
+        return tabImageView;
+    }
+
      public int move()
      {
-        tilePosition = tilePosition + getMoveValue();
+         if (dice.canRollAgain()) {
+             int moveValue = dice.rollDice();
+             tilePosition = tilePosition + moveValue;
+             System.out.println(playerName + " position: " + tilePosition);
+         } else{
+             System.out.println(playerName + " can't roll again");
+         }
 
         if (tilePosition > maxPosition) {
             int difference = tilePosition - maxPosition;
@@ -135,5 +125,4 @@ public class Player {
             }
         }
     }
-
 }

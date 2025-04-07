@@ -10,7 +10,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import org.apache.poi.ss.formula.functions.T;
 
@@ -18,6 +20,8 @@ import java.util.*;
 
 public class GameBoard extends Application {
     private Dice dice;
+    private Pane[] playerTabs;
+    private EndTurnButton endTurnButton;
     private BorderPane boardPane = new BorderPane();
 
     public static List<String> availableTokens = new ArrayList<>(Arrays.asList(
@@ -117,16 +121,39 @@ public class GameBoard extends Application {
         DicePane.setPrefHeight(sceneHeight * 0.45);
         DicePane.setBorder(Border);
 
-        // create dice object and show image
+        // create button objects and show image
         //
         dice = new Dice(DicePane, sceneWidth, sceneHeight);
+        //setDice(dice);
+        endTurnButton = new EndTurnButton(DicePane, sceneWidth, sceneHeight);
+
+        // player tab panes
+        playerTabs = new Pane[5];    // create total of 5 panes as that is max amount of players
+        double playerTabW = sceneWidth * 0.17;
+        double playerTabH = sceneHeight * 0.14;
+        // create each pane and assign to position in array
+        for (int tabIndex = 0; tabIndex < 5; tabIndex++) {
+            playerTabs[tabIndex] = new Pane();
+            playerTabs[tabIndex].setPrefWidth(playerTabW);
+            playerTabs[tabIndex].setPrefHeight(playerTabH);
+        }
+
+        // group all tabs into layout YBox to hold all player tabs vertically
+        VBox tabLayout = new VBox(15);
+        tabLayout.getChildren().addAll(playerTabs);   // add all player tab panes to layout
+
+        // create pane to specifically position tabLayout
+        Pane positionPlayerTabs = new Pane();
+        positionPlayerTabs.setLayoutX(sceneWidth * 0.56);
+        positionPlayerTabs.setLayoutY(sceneHeight * 0.1);
+        positionPlayerTabs.getChildren().addAll(tabLayout);
+
 
         // Create the main group to hold everything
         Group mainGroup = new Group();
-        mainGroup.getChildren().addAll(boardPane, bankPane, DicePane);
+        mainGroup.getChildren().addAll(boardPane, bankPane, DicePane, positionPlayerTabs);
 
         // Call FillTiles method to populate the board
-
         FillTiles(TopPane, BottomPane, LeftPane, RightPane);
 
         // Create the scene and set it to the primary stage
@@ -143,9 +170,40 @@ public class GameBoard extends Application {
         boardPane.getChildren().add(imageView);
     }
 
+    // add players tab image to board
+    public void addPlayerTab(Player player){
+        // add image
+        ImageView imageView = player.playerTabImageView();
+        playerTabs[player.getPlayerID() - 1].getChildren().add(imageView);
+        // add text
+        // name
+        Text name = new Text(player.getPlayerName());
+        name.setFont(Font.font("Monospaced", FontWeight.BOLD,18));
+        name.setFill(Color.DARKSLATEGRAY);
+        name.setLayoutX(130);
+        name.setLayoutY(50);
+        // money
+        Text money = new Text("£" + player.getMoney());
+        money.setFont(Font.font("Monospaced", FontWeight.EXTRA_BOLD,16));
+        money.setFill(Color.LIGHTGREY);
+        money.setLayoutX(130);
+        money.setLayoutY(80);
+        // player position
+        Text position = new Text("Position: " + player.getTilePosition());
+        position.setFont(Font.font("Monospaced", FontWeight.BOLD,16));
+        position.setFill(Color.LIGHTGREY);
+        position.setLayoutX(130);
+        position.setLayoutY(100);
+        // add text to player tab
+        playerTabs[player.getPlayerID() - 1].getChildren().addAll(name, money, position);
+    }
+
     public Dice getDice(){
         return dice;
     }
+
+    public EndTurnButton getEndTurnButton(){return endTurnButton;}
+
 
     // Create Universal Border:
     public Border Border = new Border(new BorderStroke(Color.BLACK, // Border color
