@@ -48,6 +48,8 @@ public class Player {
         Money = money;
     }
 
+    public void setTilePosition(int tilePosition) {this.tilePosition = tilePosition;}
+
     public int getTilePosition() {
         return tilePosition;
     }
@@ -71,8 +73,13 @@ public class Player {
         return imageView;
     }
 
-    //public boolean resetHasRolled(){return hasRolled = false;}
-
+    public ImageView playerTabImageView() {
+        System.out.println(playerName + " is tab: " + token);
+        // create image and IV
+        Image tabImage = new Image("/images/" + token + "_tab.png", 328, 0, true, true);
+        ImageView tabImageView = new ImageView(tabImage);
+        return tabImageView;
+    }
 
      public int move()
      {

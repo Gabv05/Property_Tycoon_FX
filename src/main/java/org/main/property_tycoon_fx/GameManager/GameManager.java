@@ -32,6 +32,7 @@ public class GameManager extends Application {
         // add players to gameboard
         for (int index = 0; index < players.length; index++) {
             Gameboard.addPlayerImage(players[index], 200 + index*50);
+            Gameboard.addPlayerTab(players[index]);
         }
 
         // pass array of players to turnManager to be set
