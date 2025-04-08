@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/EndTurnButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/TurnManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/endTurnBtn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_03_2025_01_18_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_03_2025_01_18__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/PropertyTycoonBoardData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/PropertyTycoonBoardData.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Dice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/PlayerAI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/PlayerAI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/rollButton.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/rollButton.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +39,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Gabv05/Property_Tycoon_FX.git&quot;,
-    &quot;accountId&quot;: &quot;07448cca-6e7e-4d59-93bd-7bd4d987de07&quot;
+    &quot;accountId&quot;: &quot;a8f59dae-e572-4d15-a28e-50e57d0ad453&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -128,14 +124,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -153,8 +141,7 @@
       <workItem from="1742138319533" duration="301000" />
       <workItem from="1742239512831" duration="2108000" />
       <workItem from="1742760693212" duration="329000" />
-      <workItem from="1742762869665" duration="6517000" />
-      <workItem from="1742823552067" duration="28554000" />
+      <workItem from="1742763654461" duration="454000" />
     </task>
     <task id="LOCAL-00001" summary="Made Basic Display layout">
       <option name="closed" value="true" />

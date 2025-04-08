@@ -2,6 +2,7 @@ package org.main.property_tycoon_fx.GameManager;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -15,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import org.apache.poi.ss.formula.functions.T;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 
 import java.util.*;
 
@@ -23,6 +25,13 @@ public class GameBoard extends Application {
     private Pane[] playerTabs;
     private EndTurnButton endTurnButton;
     private BorderPane boardPane = new BorderPane();
+
+    GridPane BottomPane = new GridPane();
+    GridPane TopPane = new GridPane();
+    GridPane LeftPane = new GridPane();
+    GridPane RightPane = new GridPane();
+
+    Group mainGroup = new Group();
 
     public static List<String> availableTokens = new ArrayList<>(Arrays.asList(
             "boot",
@@ -73,25 +82,25 @@ public class GameBoard extends Application {
         double sidePaneWidth = boardPane.getPrefWidth() * 0.160; // Keep the side panes narrower
         double sidePaneHeight = boardPane.getPrefHeight() * (1 - 2 * 0.175);
 
-        GridPane BottomPane = new GridPane();
+
         BottomPane.setStyle("-fx-background-color: beige;");
         BottomPane.setPrefWidth(paneWidth);
         BottomPane.setPrefHeight(paneHeight);
         BottomPane.setBorder(Border);
 
-        GridPane TopPane = new GridPane();
+
         TopPane.setStyle("-fx-background-color: beige;");
         TopPane.setPrefWidth(paneWidth);
         TopPane.setPrefHeight(paneHeight);
         TopPane.setBorder(Border);
 
-        GridPane LeftPane = new GridPane();
+
         LeftPane.setStyle("-fx-background-color: beige;");
         LeftPane.setPrefWidth(sidePaneWidth);
         LeftPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
         LeftPane.setBorder(Border);
 
-        GridPane RightPane = new GridPane();
+
         RightPane.setStyle("-fx-background-color: beige;");
         RightPane.setPrefWidth(sidePaneWidth);
         RightPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
@@ -150,7 +159,7 @@ public class GameBoard extends Application {
 
 
         // Create the main group to hold everything
-        Group mainGroup = new Group();
+
         mainGroup.getChildren().addAll(boardPane, bankPane, DicePane, positionPlayerTabs);
 
         // Call FillTiles method to populate the board
@@ -164,10 +173,11 @@ public class GameBoard extends Application {
     }
 
     // add player ImageView to boardPane
-    public void addPlayerImage(Player player, double x){
+    public void addPlayerImage(Player player, double x, double y){
         ImageView imageView = player.playerImageView();
         imageView.setTranslateX(x);
-        boardPane.getChildren().add(imageView);
+        imageView.setTranslateY(y);
+       mainGroup.getChildren().add(imageView);
     }
 
     // add players tab image to board
@@ -219,7 +229,6 @@ public class GameBoard extends Application {
         int topSize = 11;
         int sideSize = 9;
 
-
         LinkedList<Tile> tileList = TReader.returnTileList(); // Get tiles from TileReader
 
         // Track positions for each pane
@@ -234,8 +243,6 @@ public class GameBoard extends Application {
             boolean isCorner = PositionStr.endsWith("1.0") || tile.getPosition() == 1;
             tile.setType(isCorner ? "Corner" : "Rectangle");
 
-           // System.out.println("Placed " + tile.getType() + " " + tile.getSpace() + " at position " + tile.getPosition() + "is Group: " + tile.getGroup());
-
             Label cellRect = new Label(tile.getSpace()); // Create a label for the tile normal rotation
             cellRect.setMinSize(150, 75);
             cellRect.setMaxSize(150, 75);
@@ -244,7 +251,6 @@ public class GameBoard extends Application {
             cellRect.setFont(new Font(14));
             cellRect.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
-
 
             Label cellRect1 = new Label(tile.getSpace());
             cellRect1.setMinSize(75, 150);
@@ -313,7 +319,55 @@ public class GameBoard extends Application {
         }
     }
 
-    public void updateBoard(Stage PrimaryStage)
+    public void passPlayerPosTile(Player player, int pPos) {
+        TileReader TReader = new TileReader();
+        TReader.getTileDetails(); // Load tile details from Excel
+        LinkedList<Tile> tileList = TReader.returnTileList(); // Get tiles from TileReader
+
+        Label MoveLabel = null;
+        Tile Requested = tileList.get(pPos);
+        String RequestedName = Requested.getSpace();
+        double RequestedPos = Requested.getPosition();
+
+
+        // Search in all panes
+        MoveLabel = findLabelInPane(LeftPane, RequestedName,pPos);
+        if (MoveLabel == null) MoveLabel = findLabelInPane(TopPane, RequestedName,pPos);
+        if (MoveLabel == null) MoveLabel = findLabelInPane(RightPane, RequestedName,pPos);
+        if (MoveLabel == null) MoveLabel = findLabelInPane(BottomPane, RequestedName,pPos);
+
+        if (MoveLabel != null) {
+            double offsetX = MoveLabel.getLayoutX() + MoveLabel.getParent().getLayoutX() + boardPane.getLayoutX();
+            double offsetY = MoveLabel.getLayoutY() + MoveLabel.getParent().getLayoutY() + boardPane.getLayoutY();
+            MoveToken(player, offsetX, offsetY);
+        }
+    }
+
+
+    private Label findLabelInPane(GridPane pane, String requestedName,int PlayerPos) {
+        for (Node node : pane.getChildren()) {
+            if (node instanceof Label) {
+                Label label = (Label) node;
+                if (label.getText().equalsIgnoreCase(requestedName)) {
+                    return label;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void MoveToken(Player player, Double posX, Double posY) {
+        ImageView playerToken = player.getPlayerTokenImage();
+        playerToken.setTranslateX(posX);
+        playerToken.setTranslateY(posY);
+        playerToken.toFront();
+
+        System.out.println("Moving to: " + playerToken.getTranslateX() + ", " + playerToken.getTranslateY());
+    }
+
+
+
+    public void updateBoard(Stage PrimaryStage, Player player)
     {
 
     }

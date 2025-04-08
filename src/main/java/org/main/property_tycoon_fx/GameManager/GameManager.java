@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
+import java.util.ArrayList;
+
 public class GameManager extends Application {
     GameBoard Gameboard = new GameBoard();
     Dice dice;
@@ -18,9 +20,9 @@ public class GameManager extends Application {
     }
 
     // create array of 5 players and return array for turn management
-    public Player[] createPlayers(){
+    public Player[] createPlayers(int count){
         // create array which can hold 5 players
-        players = new Player[5];
+        players = new Player[count];
 
         // create players
         players[0] = new Player(1, "Player1", 1500, Gameboard);
@@ -31,7 +33,7 @@ public class GameManager extends Application {
 
         // add players to gameboard
         for (int index = 0; index < players.length; index++) {
-            Gameboard.addPlayerImage(players[index], 200 + index*50);
+            Gameboard.addPlayerImage(players[index], 95,935);
             Gameboard.addPlayerTab(players[index]);
         }
 
@@ -43,7 +45,7 @@ public class GameManager extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-      // ArrayList<Tile> GameTiles = new ArrayList<>();
+       ArrayList<Tile> GameTiles = new ArrayList<>();
 
         Gameboard.start(primaryStage);
 
@@ -61,6 +63,9 @@ public class GameManager extends Application {
         rollButton.setOnAction(actionEvent -> {
             System.out.println("Roll Button Clicked by " + turnManager.getCurrentPlayer().getPlayerName());
             turnManager.currentPlayerRoll(turnManager.getCurrentPlayer());
+          turnManager.getCurrentPlayer().getTilePosition();
+           Gameboard.passPlayerPosTile(turnManager.getCurrentPlayer(), turnManager.getCurrentPlayer().getTilePosition());
+
         });
         // end turn button:
         endTurnBtn = endTurnButton.getEndTurnBtn();
@@ -73,7 +78,7 @@ public class GameManager extends Application {
         });
 
         // create 5 players
-        createPlayers();
+        createPlayers(5);
 
         // test
         //player1.buyTileProperty(player1.getTilePosition());

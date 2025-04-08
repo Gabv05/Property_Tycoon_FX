@@ -44,6 +44,13 @@ public class Player {
         return Money;
     }
 
+    public ImageView getPlayerTokenImage() {
+        return playerTokenImage;
+    }
+
+    public ImageView playerTokenImage;
+
+
     public void setMoney(int money) {
         Money = money;
     }
@@ -70,6 +77,7 @@ public class Player {
         // create image and imageview
         Image tokenImage = new Image("/images/" + token + "_token.png", 60, 60, true, true);
         ImageView imageView = new ImageView(tokenImage);
+        playerTokenImage = imageView;
         return imageView;
     }
 
@@ -86,6 +94,7 @@ public class Player {
          if (dice.canRollAgain()) {
              int moveValue = dice.rollDice();
              tilePosition = tilePosition + moveValue;
+
              System.out.println(playerName + " position: " + tilePosition);
          } else{
              System.out.println(playerName + " can't roll again");
@@ -99,6 +108,8 @@ public class Player {
         System.out.println(tilePosition);
         return tilePosition;
      }
+
+
 
 
     public void buyTileProperty(int tilePosition)

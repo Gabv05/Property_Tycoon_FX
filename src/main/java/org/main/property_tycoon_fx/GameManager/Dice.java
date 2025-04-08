@@ -175,6 +175,8 @@ public class Dice {
     }
 
 
+
+
     public void resetRolls(){
         isDouble = 0;
         rollNum = 0;
