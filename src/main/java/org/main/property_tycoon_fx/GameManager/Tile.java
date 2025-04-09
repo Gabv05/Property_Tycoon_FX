@@ -25,6 +25,7 @@ public class Tile {
     private int isOwnedBy; //ID number of player that owns tile (default 0)
     private Image TileImage;
     private ArrayList<Integer> playerIDs = new ArrayList<>(); //stores the ids of the players on the tile
+    private int houseCount = 0; // 0 = no houses, 5 = hotel
 
     public Tile(double Tposition, String Tspace, String Tgroup, String Taction, boolean TcanBeBought, double Tcost, double[] Trent, int TisOwnedBy) {
         position = Tposition;
@@ -37,6 +38,28 @@ public class Tile {
         isOwnedBy = TisOwnedBy;
 
         assignImages(group); // Automatically set the image when creating the tile
+    }
+    
+
+      public int getHouseCount() {
+        return houseCount;
+    }
+
+    public void upgrade() {
+        if (houseCount < 5) {
+            houseCount++;
+            System.out.println(space + " upgraded to " + (houseCount == 5 ? "a hotel!" : houseCount + " house(s)"));
+        } else {
+            System.out.println(space + " is already fully upgraded.");
+        }
+    }
+
+    public double getCurrentRent() {
+        return rent[Math.min(houseCount, rent.length - 1)];
+    }
+
+    public boolean canUpgrade() {
+        return houseCount < 5;
     }
 
     public double getPosition() {
