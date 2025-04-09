@@ -22,12 +22,11 @@ import javafx.stage.Stage;
 import java.util.*;
 
 public class GameBoard extends Application {
+    public GameManager Gamemanager;
     private Dice dice;
     private Pane[] playerTabs;
     private EndTurnButton endTurnButton;
     private BorderPane boardPane = new BorderPane();
-
-
 
     GridPane BottomPane = new GridPane();
     GridPane TopPane = new GridPane();
@@ -59,7 +58,9 @@ public class GameBoard extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         SetUpBoard(primaryStage);
+        StartBoard(primaryStage);
     }
 
     // In our design we assume a 1920x1080 layout. All coordinates and sizes are relative to these numbers as this is my monitor size at home
@@ -165,6 +166,8 @@ public class GameBoard extends Application {
         // Apply the scale transformation.
         mainGroup.setScaleX(scale);
         mainGroup.setScaleY(scale);
+
+
 
         Scene gameScene = new Scene(root, screenWidth, screenHeight);
         primaryStage.setScene(gameScene);
@@ -389,7 +392,10 @@ public class GameBoard extends Application {
         playerToken.toFront();
     }
 
-    public void updateBoard(Stage PrimaryStage, Player player) {
-        // Update board logic here
+    public void StartBoard(Stage PrimaryStage) {
+        Label MoveLabel = null;
+        MoveLabel = findLabelInPane(BottomPane,"Go", 1);
+        Gamemanager.setStartposX((int) (MoveLabel.getLayoutX() + MoveLabel.getParent().getLayoutX() + boardPane.getLayoutX()));
+        Gamemanager.setStartposY((int) (MoveLabel.getLayoutY() + MoveLabel.getParent().getLayoutY() + boardPane.getLayoutY()));
     }
 }

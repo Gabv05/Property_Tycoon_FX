@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class GameManager extends Application {
     GameBoard Gameboard = new GameBoard();
@@ -16,12 +17,31 @@ public class GameManager extends Application {
     Button rollButton;
     Button endTurnBtn;
 
+    public int StartposX;
+    public int StartposY;
+
+    public int getStartposX() {
+        return StartposX;
+    }
+
+    public void setStartposX(int startposX) {
+        StartposX = startposX;
+    }
+
+    public int getStartposY() {
+        return StartposY;
+    }
+
+    public void setStartposY(int startposY) {
+        StartposY = startposY;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
 
     // create array of 5 players and return array for turn management
-    public Player[] createPlayers(int count){
+    public Player[] createPlayers(int count,int goPosX, int goPosY){
         // create array which can hold 5 players
         players = new Player[count];
 
@@ -34,7 +54,7 @@ public class GameManager extends Application {
 
         // add players to gameboard
         for (int index = 0; index < players.length; index++) {
-            Gameboard.addPlayerImage(players[index], 95,935);
+            Gameboard.addPlayerImage(players[index], goPosX,goPosY);
             Gameboard.addPlayerTab(players[index]);
         }
 
@@ -44,9 +64,16 @@ public class GameManager extends Application {
         return players;
     }
 
+
+
+
     @Override
     public void start(Stage primaryStage) {
-       ArrayList<Tile> GameTiles = new ArrayList<>();
+        TileReader TReader = new TileReader();
+        TReader.getTileDetails();
+        LinkedList<Tile> tileList = TReader.returnTileList();
+
+        Gameboard.Gamemanager = this;
 
         Gameboard.start(primaryStage);
 
@@ -79,7 +106,8 @@ public class GameManager extends Application {
         });
 
         // create 5 players
-        createPlayers(5);
+      createPlayers(5,getStartposX(),getStartposY());
+        System.out.println("X is: " + getStartposX() + "Y is: " + getStartposY());
 
         // test
         //player1.buyTileProperty(player1.getTilePosition());
