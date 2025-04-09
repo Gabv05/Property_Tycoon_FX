@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94940e53-75a4-47cd-8967-7068d46ab974" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/go_to_jail.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/PropertyTycoonBoardData.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/data/PropertyTycoonBoardData.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/main/property_tycoon_fx/GameManager/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/FreeParking.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/FreeParking.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/go.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/go.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/jail.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +35,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Gabv05/Property_Tycoon_FX.git&quot;,
-    &quot;accountId&quot;: &quot;4ba21803-eaeb-4bd5-be7b-51e47f9a6211&quot;
+    &quot;accountId&quot;: &quot;a8f59dae-e572-4d15-a28e-50e57d0ad453&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -63,7 +59,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.GameBoard.executor": "Run",
+    "Application.GameBoard.executor": "Debug",
     "Application.GameManager.executor": "Run",
     "JUnit.TileReaderTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -72,29 +68,30 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/lh695/Downloads/openjfx-24_windows-x64_bin-sdk.zip",
+    "last_opened_file_path": "C:/Users/lewis/Documents/SoftWareEngineiering/Property_Tycoon_FX/src/main/java/org/main/property_tycoon_fx/GameManager",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lewis\Documents\SoftWareEngineiering\Property_Tycoon_FX\src\main\java\org\main\property_tycoon_fx\GameManager" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lewis\Documents\SoftWareEngineiering\Property_Tycoon_FX\src\main\resources\Images" />
       <recent name="C:\Users\crose\OneDrive\Documents\Property_Tycoon_FX\src\main\resources\Images" />
       <recent name="C:\Users\lewis\Documents\SoftWareEngineiering\Property_Tycoon_FX\src\main\resources" />
       <recent name="C:\Users\lewis\Documents\SoftWareEngineiering\Property_Tycoon_FX\Images" />
       <recent name="$PROJECT_DIR$/src/main/java/org/main" />
-      <recent name="$PROJECT_DIR$/src/main/java" />
     </key>
   </component>
   <component name="RunManager" selected="Application.GameManager">
@@ -112,31 +109,17 @@
       </method>
     </configuration>
     <configuration name="GameManager" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/corretto-23.0.2" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="org.main.property_tycoon_fx.GameManager.GameManager" />
       <module name="Property_Tycoon_FX" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.GameManager" />
-      <item itemvalue="Application.GameBoard" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.GameBoard" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.387" />
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.387" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -156,8 +139,6 @@
       <workItem from="1742239512831" duration="2108000" />
       <workItem from="1742760693212" duration="329000" />
       <workItem from="1742763654461" duration="454000" />
-      <workItem from="1744205107004" duration="607000" />
-      <workItem from="1744205729724" duration="4887000" />
     </task>
     <task id="LOCAL-00001" summary="Made Basic Display layout">
       <option name="closed" value="true" />

@@ -2,24 +2,22 @@ package org.main.property_tycoon_fx.GameManager;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.apache.poi.ss.formula.functions.T;
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-
-import javafx.scene.image.WritableImage;
-
 
 import java.util.*;
 
@@ -29,11 +27,14 @@ public class GameBoard extends Application {
     private EndTurnButton endTurnButton;
     private BorderPane boardPane = new BorderPane();
 
+
+
     GridPane BottomPane = new GridPane();
     GridPane TopPane = new GridPane();
     GridPane LeftPane = new GridPane();
     GridPane RightPane = new GridPane();
 
+    // We will add all our game elements to this group.
     Group mainGroup = new Group();
 
     public static List<String> availableTokens = new ArrayList<>(Arrays.asList(
@@ -43,16 +44,12 @@ public class GameBoard extends Application {
             "hatstand",
             "cat",
             "iron"
-    ));     // will add the other two tokens once finished images
+    ));
 
-    public String giveToken(){
-        // get random token name
+    public String giveToken() {
         int randomIndex = new Random().nextInt(availableTokens.size());
-        System.out.println("index: " + randomIndex + " taken token = " + availableTokens.get(randomIndex));
         String token = availableTokens.get(randomIndex);
         availableTokens.remove(randomIndex);
-        System.out.println("arraylist = " + availableTokens);
-
         return token;
     }
 
@@ -63,171 +60,168 @@ public class GameBoard extends Application {
     @Override
     public void start(Stage primaryStage) {
         SetUpBoard(primaryStage);
-
     }
 
+    // In our design we assume a 1920x1080 layout. All coordinates and sizes are relative to these numbers as this is my monitor size at home
     private void SetUpBoard(Stage primaryStage) {
-        double sceneWidth = 1920;
-        double sceneHeight = 1080;
-
-        // Create pane for board:
+        final double designWidth = 1920;
+        final double designHeight = 1080;
 
         boardPane.setStyle("-fx-background-color: beige;");
-        boardPane.setLayoutX(sceneWidth * 0.025); // Start 5% from the left
-        boardPane.setLayoutY(sceneHeight * 0.05); // Slight top margin
-        boardPane.setPrefWidth(sceneWidth * 0.5);
-        boardPane.setPrefHeight(sceneHeight * 0.7);
+        boardPane.setLayoutX(designWidth * 0.025);
+        boardPane.setLayoutY(designHeight * 0.05);
+        boardPane.setPrefWidth(designWidth * 0.5);
+        boardPane.setPrefHeight(designHeight * 0.7);
 
+        double paneWidth = boardPane.getPrefWidth() * 0.190;
+        double paneHeight = boardPane.getPrefHeight() * 0.190;
 
-        double paneWidth = boardPane.getPrefWidth() * 0.190;  // Same width for Top and Bottom panes
-        double paneHeight = boardPane.getPrefHeight() * 0.190; // Same height for all panes
-
-        double sidePaneWidth = boardPane.getPrefWidth() * 0.160; // Keep the side panes narrower
+        double sidePaneWidth = boardPane.getPrefWidth() * 0.160;
         double sidePaneHeight = boardPane.getPrefHeight() * (1 - 2 * 0.175);
-
 
         BottomPane.setStyle("-fx-background-color: beige;");
         BottomPane.setPrefWidth(paneWidth);
         BottomPane.setPrefHeight(paneHeight);
 
-
-
         TopPane.setStyle("-fx-background-color: beige;");
         TopPane.setPrefWidth(paneWidth);
         TopPane.setPrefHeight(paneHeight);
 
-
-
         LeftPane.setStyle("-fx-background-color: beige;");
         LeftPane.setPrefWidth(sidePaneWidth);
-        LeftPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
-
-
+        LeftPane.setPrefHeight(sidePaneHeight);
 
         RightPane.setStyle("-fx-background-color: beige;");
         RightPane.setPrefWidth(sidePaneWidth);
-        RightPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
+        RightPane.setPrefHeight(sidePaneHeight);
 
-
-        // Set side panes to be inside the boardPane using BorderPane
+        // Position the side panes in the boardPane.
         boardPane.setBottom(BottomPane);
         boardPane.setTop(TopPane);
         boardPane.setLeft(LeftPane);
         boardPane.setRight(RightPane);
 
-        // Create pane for Bank (inside the boardPane):
+        // Create pane for Bank:
         Pane bankPane = new Pane();
         bankPane.setStyle("-fx-background-color: beige;");
-        bankPane.setLayoutX(sceneWidth * 0.75);
-        bankPane.setLayoutY(sceneHeight * 0.05);
-        bankPane.setPrefWidth(sceneWidth * 0.225);
-        bankPane.setPrefHeight(sceneHeight * 0.45);
+        bankPane.setLayoutX(designWidth * 0.75);
+        bankPane.setLayoutY(designHeight * 0.05);
+        bankPane.setPrefWidth(designWidth * 0.225);
+        bankPane.setPrefHeight(designHeight * 0.45);
 
-
-        // Create pane for Dice (inside the boardPane):
+        // Create pane for Dice:
         Pane DicePane = new Pane();
         DicePane.setStyle("-fx-background-color: beige;");
-        DicePane.setLayoutX(sceneWidth * 0.75);
-        DicePane.setLayoutY(sceneHeight * 0.5);
-        DicePane.setPrefWidth(sceneWidth * 0.225);
-        DicePane.setPrefHeight(sceneHeight * 0.45);
+        DicePane.setLayoutX(designWidth * 0.75);
+        DicePane.setLayoutY(designHeight * 0.5);
+        DicePane.setPrefWidth(designWidth * 0.225);
+        DicePane.setPrefHeight(designHeight * 0.45);
 
+        // Create button objects and show image
+        dice = new Dice(DicePane, designWidth, designHeight);
+        endTurnButton = new EndTurnButton(DicePane, designWidth, designHeight);
 
-        // create button objects and show image v  
-        //
-        dice = new Dice(DicePane, sceneWidth, sceneHeight);
-        //setDice(dice);
-        endTurnButton = new EndTurnButton(DicePane, sceneWidth, sceneHeight);
-
-        // player tab panes
-        playerTabs = new Pane[5];    // create total of 5 panes as that is max amount of players
-        double playerTabW = sceneWidth * 0.17;
-        double playerTabH = sceneHeight * 0.14;
-        // create each pane and assign to position in array
+        // Create five player tab panes:
+        playerTabs = new Pane[5];
+        double playerTabW = designWidth * 0.17;
+        double playerTabH = designHeight * 0.14;
         for (int tabIndex = 0; tabIndex < 5; tabIndex++) {
             playerTabs[tabIndex] = new Pane();
             playerTabs[tabIndex].setPrefWidth(playerTabW);
             playerTabs[tabIndex].setPrefHeight(playerTabH);
         }
 
-        // group all tabs into layout YBox to hold all player tabs vertically
+        // Add the player tabs to a vertical layout container:
         VBox tabLayout = new VBox(15);
-        tabLayout.getChildren().addAll(playerTabs);   // add all player tab panes to layout
+        tabLayout.getChildren().addAll(playerTabs);
 
-        // create pane to specifically position tabLayout
+        // Position the player tabs:
         Pane positionPlayerTabs = new Pane();
-        positionPlayerTabs.setLayoutX(sceneWidth * 0.56);
-        positionPlayerTabs.setLayoutY(sceneHeight * 0.1);
+        positionPlayerTabs.setLayoutX(designWidth * 0.56);
+        positionPlayerTabs.setLayoutY(designHeight * 0.1);
         positionPlayerTabs.getChildren().addAll(tabLayout);
 
-
-        // Create the main group to hold everything
-
+        // Add all primary game elements to our mainGroup:
         mainGroup.getChildren().addAll(boardPane, bankPane, DicePane, positionPlayerTabs);
 
-        // Call FillTiles method to populate the board
+        // Populate the board’s tiles.
         FillTiles(TopPane, BottomPane, LeftPane, RightPane);
 
-        // Create the scene and set it to the primary stage
-        Scene gameScene = new Scene(mainGroup, sceneWidth, sceneHeight);
+        // Wrap mainGroup in a StackPane for auto-centering
+        StackPane root = new StackPane();
+        root.getChildren().add(mainGroup);
+
+        // Calculate the scale factor based on the actual screen size
+
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+        double screenWidth = screenBounds.getWidth();
+        double screenHeight = screenBounds.getHeight();
+
+        // Compute the scale factor to fit the design inside the screen.
+        double scaleX = screenWidth / designWidth;
+        double scaleY = screenHeight / designHeight;
+        double scale = Math.min(scaleX, scaleY);
+
+        // Apply the scale transformation.
+        mainGroup.setScaleX(scale);
+        mainGroup.setScaleY(scale);
+
+        Scene gameScene = new Scene(root, screenWidth, screenHeight);
         primaryStage.setScene(gameScene);
-        primaryStage.setFullScreen(false);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
-    // add player ImageView to boardPane
-    public void addPlayerImage(Player player, double x, double y){
+
+    public void addPlayerImage(Player player, double x, double y) {
         ImageView imageView = player.playerImageView();
         imageView.setTranslateX(x);
         imageView.setTranslateY(y);
-       mainGroup.getChildren().add(imageView);
+        mainGroup.getChildren().add(imageView);
     }
 
-    // add players tab image to board
-    public void addPlayerTab(Player player){
-        // add image
+    public void addPlayerTab(Player player) {
         ImageView imageView = player.playerTabImageView();
         playerTabs[player.getPlayerID() - 1].getChildren().add(imageView);
-        // add text
-        // name
+
         Text name = new Text(player.getPlayerName());
-        name.setFont(Font.font("Monospaced", FontWeight.BOLD,18));
+        name.setFont(Font.font("Monospaced", FontWeight.BOLD, 18));
         name.setFill(Color.DARKSLATEGRAY);
         name.setLayoutX(130);
         name.setLayoutY(50);
-        // money
+
         Text money = new Text("£" + player.getMoney());
-        money.setFont(Font.font("Monospaced", FontWeight.EXTRA_BOLD,16));
+        money.setFont(Font.font("Monospaced", FontWeight.EXTRA_BOLD, 16));
         money.setFill(Color.LIGHTGREY);
         money.setLayoutX(130);
         money.setLayoutY(80);
-        // player position
+
         Text position = new Text("Position: " + player.getTilePosition());
-        position.setFont(Font.font("Monospaced", FontWeight.BOLD,16));
+        position.setFont(Font.font("Monospaced", FontWeight.BOLD, 16));
         position.setFill(Color.LIGHTGREY);
         position.setLayoutX(130);
         position.setLayoutY(100);
-        // add text to player tab
+
         playerTabs[player.getPlayerID() - 1].getChildren().addAll(name, money, position);
     }
 
-    public Dice getDice(){
+    public Dice getDice() {
         return dice;
     }
 
-    public EndTurnButton getEndTurnButton(){return endTurnButton;}
-
+    public EndTurnButton getEndTurnButton() {
+        return endTurnButton;
+    }
 
     public void FillTiles(GridPane Top, GridPane Bottom, GridPane Left, GridPane Right) {
         TileReader tileReader = new TileReader();
-        tileReader.getTileDetails(); // Load tile details from Excel
+        tileReader.getTileDetails();
 
         int topSize = 11;
         int sideSize = 9;
 
-        LinkedList<Tile> tileList = tileReader.returnTileList(); // Get tiles from TileReader
+        LinkedList<Tile> tileList = tileReader.returnTileList();
 
-        // Track positions for each pane
         int bottomCol = 0;
         int rightRow = sideSize - 1;
         int topCol = topSize - 1;
@@ -239,7 +233,7 @@ public class GameBoard extends Application {
             boolean isCorner = positionStr.endsWith("1.0") || tile.getPosition() == 1;
             tile.setType(isCorner ? "Corner" : "Rectangle");
 
-            Label rectLabel = new Label(tile.getSpace()); // Create a label for normal rotation
+            Label rectLabel = new Label(tile.getSpace());
             rectLabel.setMinSize(150, 75);
             rectLabel.setMaxSize(150, 75);
             rectLabel.setPrefSize(150, 75);
@@ -259,7 +253,7 @@ public class GameBoard extends Application {
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
             rotatedRectLabel.setStyle("-fx-text-fill: transparent;");
 
-            Label cornerLabel = new Label(tile.getSpace()); // Create a label for corners
+            Label cornerLabel = new Label(tile.getSpace());
             cornerLabel.setMinSize(150, 150);
             cornerLabel.setMaxSize(150, 150);
             cornerLabel.setPrefSize(150, 150);
@@ -328,50 +322,46 @@ public class GameBoard extends Application {
             if (bottomCol < topSize) {
                 if (tile.getType().equals("Corner")) {
                     cornerLabel.setBackground(new Background(cornerBackground));
-                    Bottom.add(cornerLabel, bottomCol, 0); // Fill BottomPane left to right
+                    Bottom.add(cornerLabel, bottomCol, 0);
                 } else {
                     rotatedRectLabel.setBackground(new Background(rectangleBackground));
-                    Bottom.add(rotatedRectLabel, bottomCol, 0); // Fill BottomPane left to right
+                    Bottom.add(rotatedRectLabel, bottomCol, 0);
                 }
                 bottomCol++;
             } else if (rightRow >= 0) {
                 rectLabel.setBackground(new Background(rotatedBackground270));
-                Right.add(rectLabel, 0, rightRow); // Fill RightPane bottom to top
+                Right.add(rectLabel, 0, rightRow);
                 rightRow--;
             } else if (topCol >= 0) {
                 if (tile.getType().equals("Corner")) {
                     cornerLabel.setBackground(new Background(cornerBackground));
-                    Top.add(cornerLabel, topCol, 0); // Fill TopPane right to left
+                    Top.add(cornerLabel, topCol, 0);
                 } else {
                     rotatedRectLabel.setBackground(new Background(rotatedBackground180));
-                    Top.add(rotatedRectLabel, topCol, 0); // Fill TopPane right to left
+                    Top.add(rotatedRectLabel, topCol, 0);
                 }
                 topCol--;
             } else if (leftRow < sideSize) {
                 rectLabel.setBackground(new Background(rotatedBackground90));
-                Left.add(rectLabel, 0, leftRow); // Fill LeftPane top to bottom
+                Left.add(rectLabel, 0, leftRow);
                 leftRow++;
             }
         }
     }
 
-
     public void passPlayerPosTile(Player player, int pPos) {
         TileReader TReader = new TileReader();
-        TReader.getTileDetails(); // Load tile details from Excel
-        LinkedList<Tile> tileList = TReader.returnTileList(); // Get tiles from TileReader
+        TReader.getTileDetails();
+        LinkedList<Tile> tileList = TReader.returnTileList();
 
         Label MoveLabel = null;
         Tile Requested = tileList.get(pPos);
         String RequestedName = Requested.getSpace();
-        double RequestedPos = Requested.getPosition();
 
-
-        // Search in all panes
-        MoveLabel = findLabelInPane(LeftPane, RequestedName,pPos);
-        if (MoveLabel == null) MoveLabel = findLabelInPane(TopPane, RequestedName,pPos);
-        if (MoveLabel == null) MoveLabel = findLabelInPane(RightPane, RequestedName,pPos);
-        if (MoveLabel == null) MoveLabel = findLabelInPane(BottomPane, RequestedName,pPos);
+        MoveLabel = findLabelInPane(LeftPane, RequestedName, pPos);
+        if (MoveLabel == null) MoveLabel = findLabelInPane(TopPane, RequestedName, pPos);
+        if (MoveLabel == null) MoveLabel = findLabelInPane(RightPane, RequestedName, pPos);
+        if (MoveLabel == null) MoveLabel = findLabelInPane(BottomPane, RequestedName, pPos);
 
         if (MoveLabel != null) {
             double offsetX = MoveLabel.getLayoutX() + MoveLabel.getParent().getLayoutX() + boardPane.getLayoutX();
@@ -380,8 +370,7 @@ public class GameBoard extends Application {
         }
     }
 
-
-    private Label findLabelInPane(GridPane pane, String requestedName,int PlayerPos) {
+    private Label findLabelInPane(GridPane pane, String requestedName, int PlayerPos) {
         for (Node node : pane.getChildren()) {
             if (node instanceof Label) {
                 Label label = (Label) node;
@@ -398,15 +387,9 @@ public class GameBoard extends Application {
         playerToken.setTranslateX(posX);
         playerToken.setTranslateY(posY);
         playerToken.toFront();
-
-        System.out.println("Moving to: " + playerToken.getTranslateX() + ", " + playerToken.getTranslateY());
     }
 
-
-
-    public void updateBoard(Stage PrimaryStage, Player player)
-    {
-
+    public void updateBoard(Stage PrimaryStage, Player player) {
+        // Update board logic here
     }
 }
-
