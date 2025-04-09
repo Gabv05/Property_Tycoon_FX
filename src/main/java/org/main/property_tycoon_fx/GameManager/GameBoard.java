@@ -1,6 +1,7 @@
 package org.main.property_tycoon_fx.GameManager;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -101,6 +102,7 @@ public class GameBoard extends Application {
         boardPane.setTop(TopPane);
         boardPane.setLeft(LeftPane);
         boardPane.setRight(RightPane);
+
 
         // Create pane for Bank:
         Pane bankPane = new Pane();
@@ -367,8 +369,12 @@ public class GameBoard extends Application {
         if (MoveLabel == null) MoveLabel = findLabelInPane(BottomPane, RequestedName, pPos);
 
         if (MoveLabel != null) {
-            double offsetX = MoveLabel.getLayoutX() + MoveLabel.getParent().getLayoutX() + boardPane.getLayoutX();
-            double offsetY = MoveLabel.getLayoutY() + MoveLabel.getParent().getLayoutY() + boardPane.getLayoutY();
+            // Calculate the center of the label
+            double labelCenterX = MoveLabel.getLayoutX() + MoveLabel.getWidth()/2;
+            double labelCenterY = MoveLabel.getLayoutY() + MoveLabel.getHeight()/2;
+
+            double offsetX = labelCenterX + MoveLabel.getParent().getLayoutX() + boardPane.getLayoutX();
+            double offsetY = labelCenterY + MoveLabel.getParent().getLayoutY() + boardPane.getLayoutY();
             MoveToken(player, offsetX, offsetY);
         }
     }
@@ -387,15 +393,26 @@ public class GameBoard extends Application {
 
     public void MoveToken(Player player, Double posX, Double posY) {
         ImageView playerToken = player.getPlayerTokenImage();
-        playerToken.setTranslateX(posX);
-        playerToken.setTranslateY(posY);
+        // Get the token's dimensions
+        double tokenWidth = playerToken.getImage().getWidth();
+        double tokenHeight = playerToken.getImage().getHeight();
+
+        // Calculate center position by offsetting by half the token size
+        playerToken.setTranslateX(posX - tokenWidth/2);
+        playerToken.setTranslateY(posY - tokenHeight/2);
         playerToken.toFront();
     }
 
     public void StartBoard(Stage PrimaryStage) {
         Label MoveLabel = null;
         MoveLabel = findLabelInPane(BottomPane,"Go", 1);
-        Gamemanager.setStartposX((int) (MoveLabel.getLayoutX() + MoveLabel.getParent().getLayoutX() + boardPane.getLayoutX()));
-        Gamemanager.setStartposY((int) (MoveLabel.getLayoutY() + MoveLabel.getParent().getLayoutY() + boardPane.getLayoutY()));
+        if (MoveLabel != null) {
+
+            double labelCenterX = MoveLabel.getLayoutX() + MoveLabel.getWidth()/2;
+            double labelCenterY = MoveLabel.getLayoutY() + MoveLabel.getHeight()/2;
+
+            Gamemanager.setStartposX((int) (labelCenterX + MoveLabel.getParent().getLayoutX()  + (boardPane.getLayoutX()/2.65)));
+            Gamemanager.setStartposY((int) (labelCenterY + MoveLabel.getParent().getLayoutY() + (boardPane.getLayoutY()/2.25)));
+        }
     }
 }
