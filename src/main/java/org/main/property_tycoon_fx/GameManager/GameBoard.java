@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 import org.apache.poi.ss.formula.functions.T;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 
+import javafx.scene.image.WritableImage;
+
+
 import java.util.*;
 
 public class GameBoard extends Application {
@@ -74,7 +77,7 @@ public class GameBoard extends Application {
         boardPane.setLayoutY(sceneHeight * 0.05); // Slight top margin
         boardPane.setPrefWidth(sceneWidth * 0.5);
         boardPane.setPrefHeight(sceneHeight * 0.7);
-        boardPane.setBorder(Border);
+
 
         double paneWidth = boardPane.getPrefWidth() * 0.190;  // Same width for Top and Bottom panes
         double paneHeight = boardPane.getPrefHeight() * 0.190; // Same height for all panes
@@ -86,25 +89,25 @@ public class GameBoard extends Application {
         BottomPane.setStyle("-fx-background-color: beige;");
         BottomPane.setPrefWidth(paneWidth);
         BottomPane.setPrefHeight(paneHeight);
-        BottomPane.setBorder(Border);
+
 
 
         TopPane.setStyle("-fx-background-color: beige;");
         TopPane.setPrefWidth(paneWidth);
         TopPane.setPrefHeight(paneHeight);
-        TopPane.setBorder(Border);
+
 
 
         LeftPane.setStyle("-fx-background-color: beige;");
         LeftPane.setPrefWidth(sidePaneWidth);
         LeftPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
-        LeftPane.setBorder(Border);
+
 
 
         RightPane.setStyle("-fx-background-color: beige;");
         RightPane.setPrefWidth(sidePaneWidth);
         RightPane.setPrefHeight(sidePaneHeight); // Shorter height so it fits
-        RightPane.setBorder(Border);
+
 
         // Set side panes to be inside the boardPane using BorderPane
         boardPane.setBottom(BottomPane);
@@ -119,7 +122,7 @@ public class GameBoard extends Application {
         bankPane.setLayoutY(sceneHeight * 0.05);
         bankPane.setPrefWidth(sceneWidth * 0.225);
         bankPane.setPrefHeight(sceneHeight * 0.45);
-        bankPane.setBorder(Border);
+
 
         // Create pane for Dice (inside the boardPane):
         Pane DicePane = new Pane();
@@ -128,9 +131,9 @@ public class GameBoard extends Application {
         DicePane.setLayoutY(sceneHeight * 0.5);
         DicePane.setPrefWidth(sceneWidth * 0.225);
         DicePane.setPrefHeight(sceneHeight * 0.45);
-        DicePane.setBorder(Border);
 
-        // create button objects and show image
+
+        // create button objects and show image v  
         //
         dice = new Dice(DicePane, sceneWidth, sceneHeight);
         //setDice(dice);
@@ -215,21 +218,14 @@ public class GameBoard extends Application {
     public EndTurnButton getEndTurnButton(){return endTurnButton;}
 
 
-    // Create Universal Border:
-    public Border Border = new Border(new BorderStroke(Color.BLACK, // Border color
-            BorderStrokeStyle.DASHED, // Solid line style
-            CornerRadii.EMPTY, // No rounded corners
-            new BorderWidths(2) // 2-pixel border width
-    ));
-
     public void FillTiles(GridPane Top, GridPane Bottom, GridPane Left, GridPane Right) {
-        TileReader TReader = new TileReader();
-        TReader.getTileDetails(); // Load tile details from Excel
+        TileReader tileReader = new TileReader();
+        tileReader.getTileDetails(); // Load tile details from Excel
 
         int topSize = 11;
         int sideSize = 9;
 
-        LinkedList<Tile> tileList = TReader.returnTileList(); // Get tiles from TileReader
+        LinkedList<Tile> tileList = tileReader.returnTileList(); // Get tiles from TileReader
 
         // Track positions for each pane
         int bottomCol = 0;
@@ -238,86 +234,127 @@ public class GameBoard extends Application {
         int leftRow = 0;
 
         for (Tile tile : tileList) {
-            String PositionStr = Double.toString(tile.getPosition());
+            String positionStr = Double.toString(tile.getPosition());
 
-            boolean isCorner = PositionStr.endsWith("1.0") || tile.getPosition() == 1;
+            boolean isCorner = positionStr.endsWith("1.0") || tile.getPosition() == 1;
             tile.setType(isCorner ? "Corner" : "Rectangle");
 
-            Label cellRect = new Label(tile.getSpace()); // Create a label for the tile normal rotation
-            cellRect.setMinSize(150, 75);
-            cellRect.setMaxSize(150, 75);
-            cellRect.setPrefSize(150, 75);
-            cellRect.setAlignment(Pos.CENTER);
-            cellRect.setFont(new Font(14));
-            cellRect.setBorder(new Border(new BorderStroke(Color.BLACK,
+            Label rectLabel = new Label(tile.getSpace()); // Create a label for normal rotation
+            rectLabel.setMinSize(150, 75);
+            rectLabel.setMaxSize(150, 75);
+            rectLabel.setPrefSize(150, 75);
+            rectLabel.setAlignment(Pos.CENTER);
+            rectLabel.setFont(new Font(14));
+            rectLabel.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            rectLabel.setStyle("-fx-text-fill: transparent;");
 
-            Label cellRect1 = new Label(tile.getSpace());
-            cellRect1.setMinSize(75, 150);
-            cellRect1.setMaxSize(75, 150);
-            cellRect1.setPrefSize(75, 150);
-            cellRect1.setAlignment(Pos.CENTER);
-            cellRect1.setFont(new Font(14));
-            cellRect1.setBorder(new Border(new BorderStroke(Color.BLACK,
+            Label rotatedRectLabel = new Label(tile.getSpace());
+            rotatedRectLabel.setMinSize(75, 150);
+            rotatedRectLabel.setMaxSize(75, 150);
+            rotatedRectLabel.setPrefSize(75, 150);
+            rotatedRectLabel.setAlignment(Pos.CENTER);
+            rotatedRectLabel.setFont(new Font(14));
+            rotatedRectLabel.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            rotatedRectLabel.setStyle("-fx-text-fill: transparent;");
 
-            Label cellCorner = new Label(tile.getSpace()); // Create a label for the tile
-            cellCorner.setMinSize(150, 150);
-            cellCorner.setMaxSize(150, 150);
-            cellCorner.setPrefSize(150, 150);
-            cellCorner.setAlignment(Pos.CENTER);
-            cellCorner.setFont(new Font(14));
-            cellCorner.setBorder(new Border(new BorderStroke(Color.BLACK,
+            Label cornerLabel = new Label(tile.getSpace()); // Create a label for corners
+            cornerLabel.setMinSize(150, 150);
+            cornerLabel.setMaxSize(150, 150);
+            cornerLabel.setPrefSize(150, 150);
+            cornerLabel.setAlignment(Pos.CENTER);
+            cornerLabel.setFont(new Font(14));
+            cornerLabel.setBorder(new Border(new BorderStroke(Color.BLACK,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+            cornerLabel.setStyle("-fx-text-fill: transparent;");
 
-            Image imageTileRect = new Image(tile.getTileImage().getUrl(), 75, 150, false, false);
-            Image imageTileCorner = new Image(tile.getTileImage().getUrl(), 150, 150, false, false);
+            Image rectangleImage = new Image(tile.getTileImage().getUrl(), 75, 150, false, false);
+            Image cornerImage = new Image(tile.getTileImage().getUrl(), 150, 150, false, false);
 
-            BackgroundImage WeSoStupidlol = new BackgroundImage(
-                    imageTileRect,
+            BackgroundImage rectangleBackground = new BackgroundImage(
+                    rectangleImage,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundPosition.DEFAULT,
                     BackgroundSize.DEFAULT
             );
 
-            BackgroundImage WeSoStupidlol1 = new BackgroundImage(
-                    imageTileCorner,
+            ImageView rotated90View = new ImageView(rectangleImage);
+            rotated90View.setRotate(90);
+            WritableImage rotatedImage90 = rotated90View.snapshot(null, null);
+
+            ImageView rotated270View = new ImageView(rectangleImage);
+            rotated270View.setRotate(270);
+            WritableImage rotatedImage270 = rotated270View.snapshot(null, null);
+
+            ImageView rotated180View = new ImageView(rectangleImage);
+            rotated180View.setRotate(180);
+            WritableImage rotatedImage180 = rotated180View.snapshot(null, null);
+
+            BackgroundImage cornerBackground = new BackgroundImage(
+                    cornerImage,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundRepeat.NO_REPEAT,
                     BackgroundPosition.DEFAULT,
                     BackgroundSize.DEFAULT
             );
 
+            BackgroundImage rotatedBackground90 = new BackgroundImage(
+                    rotatedImage90,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT
+            );
+
+            BackgroundImage rotatedBackground270 = new BackgroundImage(
+                    rotatedImage270,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT
+            );
+
+            BackgroundImage rotatedBackground180 = new BackgroundImage(
+                    rotatedImage180,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT
+            );
+
+            // Fill grids based on positions
             if (bottomCol < topSize) {
                 if (tile.getType().equals("Corner")) {
-                    cellCorner.setBackground(new Background(WeSoStupidlol1));
-                    Bottom.add(cellCorner, bottomCol, 0); // Fill BottomPane left to right
+                    cornerLabel.setBackground(new Background(cornerBackground));
+                    Bottom.add(cornerLabel, bottomCol, 0); // Fill BottomPane left to right
                 } else {
-                    cellRect1.setBackground(new Background(WeSoStupidlol));
-                    Bottom.add(cellRect1, bottomCol, 0); // Fill BottomPane left to right
+                    rotatedRectLabel.setBackground(new Background(rectangleBackground));
+                    Bottom.add(rotatedRectLabel, bottomCol, 0); // Fill BottomPane left to right
                 }
                 bottomCol++;
             } else if (rightRow >= 0) {
-                cellRect.setBackground(new Background(WeSoStupidlol));
-                Right.add(cellRect, 0, rightRow); // Fill RightPane bottom to top
+                rectLabel.setBackground(new Background(rotatedBackground270));
+                Right.add(rectLabel, 0, rightRow); // Fill RightPane bottom to top
                 rightRow--;
             } else if (topCol >= 0) {
                 if (tile.getType().equals("Corner")) {
-                    cellCorner.setBackground(new Background(WeSoStupidlol1));
-                    Top.add(cellCorner, topCol, 0); // Fill TopPane right to left
+                    cornerLabel.setBackground(new Background(cornerBackground));
+                    Top.add(cornerLabel, topCol, 0); // Fill TopPane right to left
                 } else {
-                    cellRect1.setBackground(new Background(WeSoStupidlol));
-                    Top.add(cellRect1, topCol, 0); // Fill TopPane right to left
+                    rotatedRectLabel.setBackground(new Background(rotatedBackground180));
+                    Top.add(rotatedRectLabel, topCol, 0); // Fill TopPane right to left
                 }
                 topCol--;
             } else if (leftRow < sideSize) {
-                cellRect.setBackground(new Background(WeSoStupidlol));
-                Left.add(cellRect, 0, leftRow); // Fill LeftPane top to bottom
+                rectLabel.setBackground(new Background(rotatedBackground90));
+                Left.add(rectLabel, 0, leftRow); // Fill LeftPane top to bottom
                 leftRow++;
             }
         }
     }
+
 
     public void passPlayerPosTile(Player player, int pPos) {
         TileReader TReader = new TileReader();
