@@ -67,6 +67,11 @@ public class Dice {
         dicePane.getChildren().add(imageView2);
     }
 
+    //Used for the unit testing
+    public Dice () {
+
+    }
+
     public boolean allowRoll(){ return canRoll; }
 
     // to set a specific dice image
@@ -94,7 +99,6 @@ public class Dice {
     public Button getRollButton(){
         return rollButton;
     }
-
 
     // only let another roll if animation has completed
     private void diceAnimation(Runnable animationComplete) {
@@ -167,15 +171,15 @@ public class Dice {
             System.out.println("Valid roll!" + noMoves);
         }
 
-        diceAnimation(() -> {}); // Callback for animation completion
+        try {
+            diceAnimation(() -> {
+            }); // Callback for animation completion
+        } catch (Exception e) {}
 
         rollNum++;
         //rollButton.setDisable(true);
         return noMoves;
     }
-
-
-
 
     public void resetRolls(){
         isDouble = 0;
