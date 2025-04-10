@@ -421,9 +421,11 @@ public class GameBoard extends Application {
         }
     }
 
-    public void addPopup(VBox Popup)
-    {
-        Popup.toFront();
-        root.getChildren().add(Popup);
-    }
+    // popups to be expanded on, if we had more time:
+
+//    public void addPopup(VBox Popup)
+//    {
+//        Popup.toFront();
+//        root.getChildren().add(Popup);
+//    }
 }
