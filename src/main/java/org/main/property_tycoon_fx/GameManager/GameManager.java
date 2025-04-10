@@ -41,7 +41,7 @@ public class GameManager extends Application {
     }
 
     // create array of 5 players and return array for turn management
-    public Player[] createPlayers(int count,int goPosX, int goPosY){
+    public Player[] createPlayers(int count, int goPosX, int goPosY) {
         // create array which can hold 5 players
         players = new Player[count];
 
@@ -54,7 +54,7 @@ public class GameManager extends Application {
 
         // add players to gameboard
         for (int index = 0; index < players.length; index++) {
-            Gameboard.addPlayerImage(players[index], goPosX,goPosY);
+            Gameboard.addPlayerImage(players[index], goPosX, goPosY);
             Gameboard.addPlayerTab(players[index]);
         }
 
@@ -63,9 +63,6 @@ public class GameManager extends Application {
 
         return players;
     }
-
-
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -91,8 +88,8 @@ public class GameManager extends Application {
         rollButton.setOnAction(actionEvent -> {
             System.out.println("Roll Button Clicked by " + turnManager.getCurrentPlayer().getPlayerName());
             turnManager.currentPlayerRoll(turnManager.getCurrentPlayer());
-          turnManager.getCurrentPlayer().getTilePosition();
-           Gameboard.passPlayerPosTile(turnManager.getCurrentPlayer(), turnManager.getCurrentPlayer().getTilePosition());
+            turnManager.getCurrentPlayer().getTilePosition();
+            Gameboard.passPlayerPosTile(turnManager.getCurrentPlayer(), turnManager.getCurrentPlayer().getTilePosition());
 
         });
         // end turn button:
@@ -106,7 +103,7 @@ public class GameManager extends Application {
         });
 
         // create 5 players
-      createPlayers(5,getStartposX(),getStartposY());
+        createPlayers(5, getStartposX(), getStartposY());
         System.out.println("X is: " + getStartposX() + "Y is: " + getStartposY());
 
         // test

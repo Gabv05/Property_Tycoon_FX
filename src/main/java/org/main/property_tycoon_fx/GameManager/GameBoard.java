@@ -34,6 +34,12 @@ public class GameBoard extends Application {
     GridPane LeftPane = new GridPane();
     GridPane RightPane = new GridPane();
 
+    StackPane root = new StackPane();
+
+    public Group getMainGroup() {
+        return mainGroup;
+    }
+
     // We will add all our game elements to this group.
     Group mainGroup = new Group();
 
@@ -151,7 +157,7 @@ public class GameBoard extends Application {
         FillTiles(TopPane, BottomPane, LeftPane, RightPane);
 
         // Wrap mainGroup in a StackPane for auto-centering
-        StackPane root = new StackPane();
+
         root.getChildren().add(mainGroup);
 
         // Calculate the scale factor based on the actual screen size
@@ -397,7 +403,6 @@ public class GameBoard extends Application {
         double tokenWidth = playerToken.getImage().getWidth();
         double tokenHeight = playerToken.getImage().getHeight();
 
-        // Calculate center position by offsetting by half the token size
         playerToken.setTranslateX(posX - tokenWidth/2);
         playerToken.setTranslateY(posY - tokenHeight/2);
         playerToken.toFront();
@@ -414,5 +419,11 @@ public class GameBoard extends Application {
             Gamemanager.setStartposX((int) (labelCenterX + MoveLabel.getParent().getLayoutX()  + (boardPane.getLayoutX()/2.65)));
             Gamemanager.setStartposY((int) (labelCenterY + MoveLabel.getParent().getLayoutY() + (boardPane.getLayoutY()/2.25)));
         }
+    }
+
+    public void addPopup(VBox Popup)
+    {
+        Popup.toFront();
+        root.getChildren().add(Popup);
     }
 }

@@ -106,6 +106,7 @@ public class Player {
         }
 
         System.out.println(tilePosition);
+        CheckCondition();
         return tilePosition;
      }
 
@@ -136,4 +137,16 @@ public class Player {
             }
         }
     }
+
+    public void CheckCondition() {
+        if (tilePosition == 3 || tilePosition == 18 || tilePosition == 34) {
+            Popup popup = new Popup("PotLuck", 0);
+            gameBoard.addPopup(popup.getPopupBox());
+        }
+        if (tilePosition == 8 || tilePosition == 23 || tilePosition == 37) {
+            Popup popup = new Popup("OppKnocks", 0);
+            gameBoard.addPopup(popup.getPopupBox());
+        }
+    }
+
 }
