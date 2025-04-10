@@ -421,7 +421,7 @@ public class GameBoard extends Application {
         }
     }
 
-    // popups to be expanded on, if we had more time:
+    // popups to be expanded on, if we had more time, template made for a hypothetical team to acquire this project from us.
 
 //    public void addPopup(VBox Popup)
 //    {
