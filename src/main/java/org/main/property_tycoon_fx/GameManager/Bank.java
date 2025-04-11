@@ -98,4 +98,15 @@ public class Bank {
         }
     }
 
+    public void chargePlayer(Player player, int amount, String reason) {
+        if (player.getMoney() >= amount) {
+            takePlayerMoney(player, amount);
+            System.out.println(player.getPlayerName() + " paid £" + amount + " for " + reason);
+        } else {
+            System.out.println(player.getPlayerName() + " cannot afford £" + amount + " for " + reason);
+            // You could call takeProperty here or handle bankruptcy logic
+        }
+    }
+
 }
+
