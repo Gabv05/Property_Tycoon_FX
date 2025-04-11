@@ -40,7 +40,7 @@ public class TurnManager {
             ((PlayerAI) current).takeTurn(); // Bot plays automatically
         } else {
             // For human players, wait for button input (e.g. roll dice button)
-            System.out.println(current.getPlayerName() + "'s turn. Waiting for input...");
+            System.out.println(current.getPlayerName() + "'s turn...");
         }
     }
 }
