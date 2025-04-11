@@ -1,11 +1,11 @@
 package org.main.property_tycoon_fx.GameManager;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.util.Duration;
 
-
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class GameManager extends Application {
@@ -17,100 +17,99 @@ public class GameManager extends Application {
     Button rollButton;
     Button endTurnBtn;
 
-    public int StartposX;
-    public int StartposY;
-
-    public int getStartposX() {
-        return StartposX;
-    }
-
-    public void setStartposX(int startposX) {
-        StartposX = startposX;
-    }
-
-    public int getStartposY() {
-        return StartposY;
-    }
-
-    public void setStartposY(int startposY) {
-        StartposY = startposY;
-    }
+    private final Bank bank = new Bank();
+    private int StartposX;
+    private int StartposY;
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    // create array of 5 players and return array for turn management
+    public int getStartposX() { return StartposX; }
+    public void setStartposX(int startposX) { StartposX = startposX; }
+
+    public int getStartposY() { return StartposY; }
+    public void setStartposY(int startposY) { StartposY = startposY; }
+
+    public Player[] getAllPlayers() {
+        return players;
+    }
+
     public Player[] createPlayers(int count, int goPosX, int goPosY) {
-        // create array which can hold 5 players
         players = new Player[count];
 
-        // create players
+        // Player 1 is human, rest are AI
         players[0] = new Player(1, "Player1", 1500, Gameboard);
-        players[1] = new Player(2, "Player2", 1500, Gameboard);
-        players[2] = new Player(3, "Player3", 1500, Gameboard);
-        players[3] = new Player(4, "Player4", 1500, Gameboard);
-        players[4] = new Player(5, "Player5", 1500, Gameboard);
+        players[1] = new PlayerAI(2, "AI Player2", 1500, Gameboard, bank);
+        players[2] = new PlayerAI(3, "AI Player3", 1500, Gameboard, bank);
+        players[3] = new PlayerAI(4, "AI Player4", 1500, Gameboard, bank);
+        players[4] = new PlayerAI(5, "AI Player5", 1500, Gameboard, bank);
 
-        // add players to gameboard
-        for (int index = 0; index < players.length; index++) {
-            Gameboard.addPlayerImage(players[index], goPosX, goPosY);
-            Gameboard.addPlayerTab(players[index]);
+        for (Player player : players) {
+            Gameboard.addPlayerImage(player, goPosX, goPosY);
+            Gameboard.addPlayerTab(player);
         }
 
-        // pass array of players to turnManager to be set
         turnManager.setPlayerArray(players);
-
         return players;
     }
 
     @Override
     public void start(Stage primaryStage) {
-        TileReader TReader = new TileReader();
-        TReader.getTileDetails();
-        LinkedList<Tile> tileList = TReader.returnTileList();
+        // Load board and tiles
+        TileReader tileReader = new TileReader();
+        tileReader.getTileDetails();
+        LinkedList<Tile> tileList = tileReader.returnTileList();
 
         Gameboard.Gamemanager = this;
-
         Gameboard.start(primaryStage);
 
-        // get objects from gameboard to be used for buttons
+        // Create 5 players
+        createPlayers(5, getStartposX(), getStartposY());
+
+        // Get UI elements
         dice = Gameboard.getDice();
         endTurnButton = Gameboard.getEndTurnButton();
-
-        CardReader CardReader = new CardReader();
-        CardReader.getCardDetails();
-
-        // buttons //
-        //
-        // roll button:
         rollButton = dice.getRollButton();
-        rollButton.setOnAction(actionEvent -> {
-            System.out.println("Roll Button Clicked by " + turnManager.getCurrentPlayer().getPlayerName());
-            turnManager.currentPlayerRoll(turnManager.getCurrentPlayer());
-            turnManager.getCurrentPlayer().getTilePosition();
-            Gameboard.passPlayerPosTile(turnManager.getCurrentPlayer(), turnManager.getCurrentPlayer().getTilePosition());
-
-        });
-        // end turn button:
         endTurnBtn = endTurnButton.getEndTurnBtn();
-        endTurnBtn.setOnAction(actionEvent -> {
-            System.out.println("End Button Clicked by " + turnManager.getCurrentPlayer().getPlayerName());
-            turnManager.nextplayer();
-            System.out.println("Current turn is for:  " + turnManager.getCurrentPlayer().getPlayerName());
-            dice.resetRolls(); // reset rolls for next player
-            //rollButton.setDisable(false);
+
+        CardReader cardReader = new CardReader();
+        cardReader.getCardDetails();
+
+        // Roll Button (Only works for human players)
+        rollButton.setOnAction(event -> {
+            Player currentPlayer = turnManager.getCurrentPlayer();
+            if (currentPlayer instanceof PlayerAI) {
+                System.out.println("AI can't roll manually.");
+                return;
+            }
+
+            System.out.println("Roll Button Clicked by " + currentPlayer.getPlayerName());
+            turnManager.currentPlayerRoll(currentPlayer);
+            Gameboard.passPlayerPosTile(currentPlayer, currentPlayer.getTilePosition());
         });
 
-        // create 5 players
-        createPlayers(5, getStartposX(), getStartposY());
-        System.out.println("X is: " + getStartposX() + "Y is: " + getStartposY());
+        // End Turn Button
+        endTurnBtn.setOnAction(event -> {
+            turnManager.nextplayer();
+            Player nextPlayer = turnManager.getCurrentPlayer();
+            System.out.println("It's now " + nextPlayer.getPlayerName() + "'s turn.");
 
-        // test
-        //player1.buyTileProperty(player1.getTilePosition());
+            // Disable roll button for AI
+            rollButton.setDisable(nextPlayer instanceof PlayerAI);
 
+            if (nextPlayer instanceof PlayerAI) {
+                nextPlayer.takeTurn();
+                Gameboard.passPlayerPosTile(nextPlayer, nextPlayer.getTilePosition());
 
-// lauren was here
+                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                pause.setOnFinished(e -> endTurnBtn.fire());
+                pause.play();
+            } else {
+                dice.resetRolls();
+            }
+        });
 
+        System.out.println("Game started at " + getStartposX() + ", " + getStartposY());
     }
 }
