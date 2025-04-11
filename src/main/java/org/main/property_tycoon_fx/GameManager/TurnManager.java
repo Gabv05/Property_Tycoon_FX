@@ -34,4 +34,15 @@ public class TurnManager {
         // increment turnIndex so it can get next player and wraps back to the start of array if increments larger than array
         turnIndex = (turnIndex + 1) % getPlayersArray().length;
     }
+    public void takeCurrentTurn() {
+        Player current = getCurrentPlayer();
+        if (current instanceof PlayerAI) {
+            ((PlayerAI) current).takeTurn(); // Bot plays automatically
+        } else {
+            // For human players, wait for button input (e.g. roll dice button)
+            System.out.println(current.getPlayerName() + "'s turn. Waiting for input...");
+        }
+    }
 }
+
+
