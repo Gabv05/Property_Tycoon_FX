@@ -14,7 +14,7 @@ class CardReaderTest {
         testCardReader.getCardDetails();
         LinkedList<Card> cardList = testCardReader.returnCardList();
         Card testCard = cardList.getFirst();
-        assertEquals("PotLuck", testCard.getType());
+        assertEquals("Potluck", testCard.getType());
     }
 
     @Test
@@ -22,7 +22,7 @@ class CardReaderTest {
         testCardReader.getCardDetails();
         LinkedList<Card> cardList = testCardReader.returnCardList();
         Card testCard = cardList.getFirst();
-        assertEquals("You inherit £200", testCard.getDescription());
+        assertEquals("\"You inherit £200\"", testCard.getDescription());
     }
 
     @Test
@@ -30,6 +30,6 @@ class CardReaderTest {
         testCardReader.getCardDetails();
         LinkedList<Card> cardList = testCardReader.returnCardList();
         Card testCard = cardList.getFirst();
-        assertEquals("BP200", testCard.getAction());
+        assertEquals("Bank pays player £200", testCard.getAction());
     }
 }
