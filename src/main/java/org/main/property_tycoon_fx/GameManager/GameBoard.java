@@ -76,6 +76,7 @@ public class GameBoard extends Application {
         boardPane.setPrefWidth(designWidth * 0.5);
         boardPane.setPrefHeight(designHeight * 0.7);
 
+
         double paneWidth = boardPane.getPrefWidth() * 0.190;
         double paneHeight = boardPane.getPrefHeight() * 0.190;
 
@@ -160,6 +161,15 @@ public class GameBoard extends Application {
         Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         double screenWidth = screenBounds.getWidth();
         double screenHeight = screenBounds.getHeight();
+
+
+
+        Image logo = new Image("/images/logo.png", screenWidth * 0.25, 0, true, true);
+        ImageView logoView = new ImageView(logo);
+        logoView.setLayoutX(screenWidth * 0.135);
+        logoView.setLayoutY(screenHeight * 0.35);
+        boardPane.getChildren().add(logoView);
+
 
         // Compute the scale factor to fit the design inside the screen.
         double scaleX = screenWidth / designWidth;

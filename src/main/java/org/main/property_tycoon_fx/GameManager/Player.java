@@ -207,6 +207,7 @@ public class Player {
         return getOutOfJailCards > 0;
     }
 
+
     public void CheckCondition() {
         if (tilePosition == 3 || tilePosition == 18 || tilePosition == 34) {
 
