@@ -24,6 +24,7 @@ import java.util.*;
 
 public class GameBoard extends Application {
     public GameManager Gamemanager;
+    private LinkedList<Tile> tileList;
     private Dice dice;
     private Pane[] playerTabs;
     private EndTurnButton endTurnButton;
@@ -33,12 +34,6 @@ public class GameBoard extends Application {
     GridPane TopPane = new GridPane();
     GridPane LeftPane = new GridPane();
     GridPane RightPane = new GridPane();
-
-    StackPane root = new StackPane();
-
-    public Group getMainGroup() {
-        return mainGroup;
-    }
 
     // We will add all our game elements to this group.
     Group mainGroup = new Group();
@@ -157,7 +152,7 @@ public class GameBoard extends Application {
         FillTiles(TopPane, BottomPane, LeftPane, RightPane);
 
         // Wrap mainGroup in a StackPane for auto-centering
-
+        StackPane root = new StackPane();
         root.getChildren().add(mainGroup);
 
         // Calculate the scale factor based on the actual screen size
@@ -216,6 +211,22 @@ public class GameBoard extends Application {
         playerTabs[player.getPlayerID() - 1].getChildren().addAll(name, money, position);
     }
 
+    private List<Player> players = new ArrayList<>();
+
+    public List<Player> getAllPlayers() {
+        return players;
+    }
+
+    public Player getPlayerByID(int id) {
+        for (Player player : Gamemanager.getAllPlayers()) {
+            if (player.getPlayerID() == id) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+
     public Dice getDice() {
         return dice;
     }
@@ -231,7 +242,7 @@ public class GameBoard extends Application {
         int topSize = 11;
         int sideSize = 9;
 
-        LinkedList<Tile> tileList = tileReader.returnTileList();
+        tileList = tileReader.returnTileList();
 
         int bottomCol = 0;
         int rightRow = sideSize - 1;
@@ -403,6 +414,7 @@ public class GameBoard extends Application {
         double tokenWidth = playerToken.getImage().getWidth();
         double tokenHeight = playerToken.getImage().getHeight();
 
+        // Calculate center position by offsetting by half the token size
         playerToken.setTranslateX(posX - tokenWidth/2);
         playerToken.setTranslateY(posY - tokenHeight/2);
         playerToken.toFront();
@@ -421,6 +433,11 @@ public class GameBoard extends Application {
         }
     }
 
+    public Tile getTile(int position) {
+        if (tileList == null || position < 0 || position >= tileList.size()) return null;
+        return tileList.get(position);
+    }
+}
     // popups to be expanded on, if we had more time, template made for a hypothetical team to acquire this project from us.
 
 //    public void addPopup(VBox Popup)
