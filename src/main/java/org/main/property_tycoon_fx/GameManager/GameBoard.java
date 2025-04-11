@@ -76,6 +76,7 @@ public class GameBoard extends Application {
         boardPane.setPrefWidth(designWidth * 0.5);
         boardPane.setPrefHeight(designHeight * 0.7);
 
+
         double paneWidth = boardPane.getPrefWidth() * 0.190;
         double paneHeight = boardPane.getPrefHeight() * 0.190;
 
@@ -161,6 +162,15 @@ public class GameBoard extends Application {
         double screenWidth = screenBounds.getWidth();
         double screenHeight = screenBounds.getHeight();
 
+
+
+        Image logo = new Image("/images/logo.png", screenWidth * 0.25, 0, true, true);
+        ImageView logoView = new ImageView(logo);
+        logoView.setLayoutX(screenWidth * 0.135);
+        logoView.setLayoutY(screenHeight * 0.35);
+        boardPane.getChildren().add(logoView);
+
+
         // Compute the scale factor to fit the design inside the screen.
         double scaleX = screenWidth / designWidth;
         double scaleY = screenHeight / designHeight;
@@ -196,17 +206,20 @@ public class GameBoard extends Application {
         name.setLayoutX(130);
         name.setLayoutY(50);
 
-        Text money = new Text("£" + player.getMoney());
-        money.setFont(Font.font("Monospaced", FontWeight.EXTRA_BOLD, 16));
-        money.setFill(Color.LIGHTGREY);
-        money.setLayoutX(130);
-        money.setLayoutY(80);
+        Text money = new Text();
+        money.setFont(Font.font("Monospaced", FontWeight.EXTRA_BOLD,16));
+        money.setFill(Color.DARKSLATEGRAY);
+        money.setLayoutX(240);
+        money.setLayoutY(50);
+        money.textProperty().bind(player.geMoneyText());
 
-        Text position = new Text("Position: " + player.getTilePosition());
-        position.setFont(Font.font("Monospaced", FontWeight.BOLD, 16));
-        position.setFill(Color.LIGHTGREY);
-        position.setLayoutX(130);
-        position.setLayoutY(100);
+        // player position
+        Text position = new Text();
+        position.setFont(Font.font("Monospaced", FontWeight.BOLD,16));
+        position.setFill(Color.DARKSLATEGRAY);
+        position.setLayoutX(30);
+        position.setLayoutY(120);
+        position.textProperty().bind(player.getPositionText());
 
         playerTabs[player.getPlayerID() - 1].getChildren().addAll(name, money, position);
     }
@@ -445,4 +458,4 @@ public class GameBoard extends Application {
 //        Popup.toFront();
 //        root.getChildren().add(Popup);
 //    }
-}
+
