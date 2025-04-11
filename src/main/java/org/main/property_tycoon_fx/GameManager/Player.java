@@ -1,5 +1,7 @@
 package org.main.property_tycoon_fx.GameManager;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
@@ -26,6 +28,9 @@ public class Player {
     private int jailTurns = 0;
     private int getOutOfJailCards = 0;
 
+    private StringProperty positionText;
+    private StringProperty moneyText;
+
     public Player(int playerID, String playerName, int Money, GameBoard gameBoard) {
         this.Money = Money;
         this.playerID = playerID;
@@ -33,10 +38,30 @@ public class Player {
         this.gameBoard = gameBoard;
         dice = gameBoard.getDice();
         token = gameBoard.giveToken();
+        this.tilePosition = 0;
+
+        // for player tab text
+        this.positionText = new SimpleStringProperty("Position: " + getTileName(this.tilePosition));  // initially have GO for when player first joins game
+        this.moneyText = new SimpleStringProperty("£ " + this.Money);
     }
 
     public String getPlayerName() {
         return playerName;
+    }
+
+
+    public String getTileName(int index) {
+        TileReader TReader = new TileReader();
+        TReader.getTileDetails(); // Load tile details from Excel
+
+        LinkedList<Tile> tileList = TReader.returnTileList(); // Get tiles from TileReader
+        for (Tile tile : tileList) {
+            if (tile.getPosition() -1 == index) {
+                System.out.println(tile.getPosition() -1 + "TILE : " + tile.getSpace());
+                return tile.getSpace();
+            }
+        }
+        return " ";
     }
 
     public void setPlayerName(String playerName) {
@@ -57,14 +82,19 @@ public class Player {
 
     public void setMoney(int money) {
         Money = money;
+        moneyText.set("£" + Money);    // update money value in player tab
     }
 
     public int getTilePosition() {
         return tilePosition;
     }
 
+    public StringProperty getPositionText() {return positionText;}
+    public StringProperty geMoneyText() {return moneyText;}
+
     public void setTilePosition(int tilePosition) {
         this.tilePosition = tilePosition;
+        positionText.set("Position: " + getTileName(tilePosition));
     }
 
     public ImageView getPlayerTokenImage() {
@@ -105,6 +135,7 @@ public class Player {
         }
 
         System.out.println(tilePosition);
+        setTilePosition(tilePosition);
         return tilePosition;
     }
 

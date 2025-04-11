@@ -206,17 +206,20 @@ public class GameBoard extends Application {
         name.setLayoutX(130);
         name.setLayoutY(50);
 
-        Text money = new Text("£" + player.getMoney());
-        money.setFont(Font.font("Monospaced", FontWeight.EXTRA_BOLD, 16));
-        money.setFill(Color.LIGHTGREY);
-        money.setLayoutX(130);
-        money.setLayoutY(80);
+        Text money = new Text();
+        money.setFont(Font.font("Monospaced", FontWeight.EXTRA_BOLD,16));
+        money.setFill(Color.DARKSLATEGRAY);
+        money.setLayoutX(240);
+        money.setLayoutY(50);
+        money.textProperty().bind(player.geMoneyText());
 
-        Text position = new Text("Position: " + player.getTilePosition());
-        position.setFont(Font.font("Monospaced", FontWeight.BOLD, 16));
-        position.setFill(Color.LIGHTGREY);
-        position.setLayoutX(130);
-        position.setLayoutY(100);
+        // player position
+        Text position = new Text();
+        position.setFont(Font.font("Monospaced", FontWeight.BOLD,16));
+        position.setFill(Color.DARKSLATEGRAY);
+        position.setLayoutX(30);
+        position.setLayoutY(120);
+        position.textProperty().bind(player.getPositionText());
 
         playerTabs[player.getPlayerID() - 1].getChildren().addAll(name, money, position);
     }
